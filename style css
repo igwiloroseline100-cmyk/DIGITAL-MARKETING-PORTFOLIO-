@@ -1,4 +1,4 @@
-* {
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -60,42 +60,55 @@ section {
 /* Hero */
 
 #home {
-    min-height: 90vh;
+    min-height: 92vh;
+    max-width: 1200px;
+    margin: auto;
+    padding: 100px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: linear-gradient(135deg, #eef2ff, #ffffff);
+    border-radius: 0 0 30px 30px;
 }
 
 #home p:first-child {
+    color: #4f46e5;
     font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
 }
 
 #home h1 {
-    max-width: 800px;
-    font-size: 52px;
-    line-height: 1.1;
-    margin-bottom: 25px;
+    max-width: 850px;
+    font-size: 60px;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
 }
 
 #home p {
-    max-width: 650px;
-    font-size: 18px;
-    margin-bottom: 30px;
+    max-width: 680px;
+    font-size: 19px;
+    color: #596174;
+    margin-bottom: 35px;
 }
 
 #home a {
     display: inline-block;
     width: fit-content;
-    padding: 14px 24px;
-    background: #172033;
+    padding: 15px 28px;
+    background: #4f46e5;
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
 }
 
+#home a:hover {
+    transform: translateY(-3px);
+}
 /* Headings */
 
 section h2 {
