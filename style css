@@ -1,4 +1,11 @@
-{
+/* ================================
+   DIGITAL MARKETING PORTFOLIO
+   Roseline Igwilo
+================================ */
+
+/* ---------- RESET ---------- */
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,26 +16,27 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
-    background: #f7f8fc;
+    background: #f8fafc;
     color: #172033;
 }
 
-/* Navigation */
+/* ---------- NAVIGATION ---------- */
 
 header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 0;
     z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #e2e8f0;
+    backdrop-filter: blur(10px);
 }
 
 nav {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: auto;
-    padding: 20px;
+    padding: 18px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,61 +44,81 @@ nav {
 
 nav h2 {
     font-size: 24px;
+    color: #4f46e5;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 nav a {
-    color: #172033;
+    color: #334155;
     text-decoration: none;
-    margin-left: 18px;
     font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    color: #4f46e5;
 }
 
-/* General sections */
+/* ---------- GENERAL SECTIONS ---------- */
 
 section {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: auto;
-    padding: 90px 20px;
+    padding: 100px 25px;
 }
 
-/* Hero */
+section h2 {
+    font-size: 38px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+section h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+section p {
+    color: #64748b;
+}
+
+/* ---------- HERO ---------- */
 
 #home {
-    min-height: 92vh;
-    max-width: 1200px;
-    margin: auto;
-    padding: 100px 30px;
+    max-width: none;
+    min-height: 90vh;
+    padding: 120px max(25px, calc((100% - 1100px) / 2));
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: linear-gradient(135deg, #eef2ff, #ffffff);
-    border-radius: 0 0 30px 30px;
+    background: linear-gradient(135deg, #eef2ff 0%, #ffffff 55%, #e0e7ff 100%);
 }
 
 #home p:first-child {
     color: #4f46e5;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 3px;
-    margin-bottom: 24px;
+    margin-bottom: 25px;
 }
 
 #home h1 {
-    max-width: 850px;
-    font-size: 60px;
+    max-width: 900px;
+    font-size: 64px;
     line-height: 1.05;
     letter-spacing: -2px;
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 }
 
 #home p {
     max-width: 680px;
     font-size: 19px;
-    color: #596174;
     margin-bottom: 35px;
 }
 
@@ -103,90 +131,9 @@ section {
     text-decoration: none;
     font-weight: 700;
     border-radius: 10px;
-    transition: transform 0.2s ease;
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25);
+    transition: 0.2s ease;
 }
 
 #home a:hover {
-    transform: translateY(-3px);
-}
-/* Headings */
-
-section h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-section h3 {
-    font-size: 22px;
-    margin: 25px 0 15px;
-}
-
-/* Lists */
-
-ul {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
-/* Projects */
-
-article {
-    background: white;
-    padding: 30px;
-    margin-top: 20px;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-}
-
-article p {
-    margin-bottom: 10px;
-}
-
-/* Contact */
-
-#contact {
-    text-align: center;
-}
-
-/* Footer */
-
-footer {
-    text-align: center;
-    padding: 30px 20px;
-    background: #172033;
-    color: white;
-}
-
-/* Mobile */
-
-@media (max-width: 768px) {
-
-    nav {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav div {
-        text-align: center;
-    }
-
-    nav a {
-        display: inline-block;
-        margin: 5px;
-    }
-
-    #home h1 {
-        font-size: 38px;
-    }
-
-    section {
-        padding: 65px 20px;
-    }
-
-    section h2 {
-        font-size: 30px;
-    }
-}
+    transform: translateY(-
