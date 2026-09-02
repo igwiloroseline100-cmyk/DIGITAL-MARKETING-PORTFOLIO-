@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Me | Roseline Igwilo</title>
+
+    <meta name="description" content="About Roseline Igwilo — Technical SEO and Digital Marketing professional focused on practical problem solving, search visibility and digital systems.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9ff;
+            color: #101936;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.96);
+            border-bottom: 1px solid #dce4ff;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #111a45;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #315cff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #26345f;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #315cff;
+        }
+
+        .hero {
+            padding: 120px 25px 100px;
+            background:
+                radial-gradient(circle at 85% 20%, #dfe7ff 0, transparent 30%),
+                radial-gradient(circle at 10% 80%, #eee5ff 0, transparent 28%),
+                #f8faff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: #315cff;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            max-width: 850px;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: .95;
+            letter-spacing: -3px;
+            margin-bottom: 28px;
+        }
+
+        h1 span {
+            color: #315cff;
+        }
+
+        .hero-text {
+            max-width: 720px;
+            color: #596682;
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 100px 25px;
+        }
+
+        .section-title {
+            max-width: 750px;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            color: #66718f;
+        }
+
+        .about-box {
+            padding: 50px;
+            background: white;
+            border: 1px solid #dce4ff;
+            border-radius: 28px;
+            box-shadow: 0 20px 55px rgba(40,60,130,.07);
+        }
+
+        .about-box p {
+            max-width: 800px;
+            color: #596682;
+            font-size: 1.08rem;
+            margin-bottom: 22px;
+        }
+
+        .about-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .focus-section {
+            background: #101936;
+            color: white;
+        }
+
+        .focus-section .eyebrow {
+            color: #91a7ff;
+        }
+
+        .focus-section h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 45px;
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .focus-card {
+            padding: 32px;
+            background: #1b2852;
+            border: 1px solid #34457f;
+            border-radius: 22px;
+        }
+
+        .focus-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .focus-card p {
+            color: #bac5e4;
+        }
+
+        .approach {
+            background: white;
+        }
+
+        .approach-box {
+            padding: 45px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #17245c, #315cff);
+            color: white;
+            box-shadow: 0 25px 60px rgba(26,49,130,.18);
+        }
+
+        .approach-box .eyebrow {
+            color: #b9c8ff;
+        }
+
+        .approach-box h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .approach-box p {
+            max-width: 750px;
+            color: #e0e7ff;
+        }
+
+        .cta {
+            text-align: center;
+            background: #f0f3ff;
+        }
+
+        .cta h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #66718f;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 10px;
+            background: #315cff;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button:hover {
+            background: #203fc4;
+        }
+
+        footer {
+            padding: 30px;
+            background: #0b1129;
+            color: #8793b7;
+            text-align: center;
+            font-size: .8rem;
+        }
+
+        footer p + p {
+            margin-top: 6px;
+        }
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
+
+            .about-box,
+            .approach-box {
+                padding: 30px 25px;
+            }
+
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: clamp(2.8rem, 14vw, 4.5rem);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            ROSELINE<span>.</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="technical-seo.html">Technical SEO</a>
+            <a href="on-page-seo.html">On-Page SEO</a>
+            <a href="meta-ads.html">Meta Ads</a>
+            <a href="coding.html">Coding</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <div class="container">
+
+            <p class="eyebrow">ABOUT ME</p>
+
+            <h1>
+                Technical thinking.
+                <span>Practical execution.</span>
+            </h1>
+
+            <p class="hero-text">
+                A Technical SEO and Digital Marketing professional focused
+                on understanding problems, analysing evidence and building
+                practical solutions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <p class="eyebrow">WHO I AM</p>
+
+                <h2>
+                    Understanding systems.
+                    Solving problems.
+                </h2>
+
+            </div>
+
+            <div class="about-box">
+
+                <p>
+                    I am a Technical SEO and Digital Marketing professional
+                    focused on understanding how websites perform, identifying
+                    problems, and developing practical solutions that improve
+                    their technical foundation and search visibility.
+                </p>
+
+                <p>
+                    My work spans Technical SEO, On-Page SEO, Meta Ads,
+                    Coding, and Web Development. I approach each area with
+                    a problem-solving mindset — understanding the system,
+                    analysing evidence, testing solutions, and improving
+                    based on what the data shows.
+                </p>
+
+                <p>
+                    I am building my expertise through hands-on projects,
+                    technical investigations, website development, and
+                    continuous practical learning.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="focus-section">
+
+        <div class="container">
+
+            <p class="eyebrow">AREAS OF FOCUS</p>
+
+            <h2>
+                Where my skills meet.
+            </h2>
+
+            <div class="focus-grid">
+
+                <div class="focus-card">
+                    <h3>Technical SEO</h3>
+                    <p>
+                        Diagnosing crawlability, indexation, architecture,
+                        performance and other technical search issues.
+                    </p>
+                </div>
+
+                <div class="focus-card">
+                    <h3>Digital Marketing</h3>
+                    <p>
+                        Understanding search, paid advertising, audiences,
+                        campaigns and performance.
+                    </p>
+                </div>
+
+                <div class="focus-card">
+                    <h3>Coding</h3>
+                    <p>
+                        Developing programming knowledge and learning how
+                        technology powers digital products.
+                    </p>
+                </div>
+
+                <div class="focus-card">
+                    <h3>Web Development</h3>
+                    <p>
+                        Building responsive websites while understanding
+                        their structure, functionality and technical foundation.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="approach">
+
+        <div class="container">
+
+            <div class="approach-box">
+
+                <p class="eyebrow">MY APPROACH</p>
+
+                <h2>
+                    Learn → Analyse → Build → Test → Improve
+                </h2>
+
+                <p>
+                    I believe strong digital skills come from understanding
+                    why something works, applying that knowledge to real
+                    problems, testing the result and continuously improving it.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="cta">
+
+        <div class="container">
+
+            <p class="eyebrow">EXPLORE THE WORK</p>
+
+            <h2>
+                See what I build.
+            </h2>
+
+            <p>
+                Explore the projects, investigations and practical work
+                across my portfolio.
+            </p>
+
+            <a href="index.html#expertise" class="button">
+                View Portfolio →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 Roseline Igwilo. All rights reserved.</p>
+    <p>Technical SEO • Digital Marketing • Coding & Web Development</p>
+</footer>
+
+</body>
+  </html>
