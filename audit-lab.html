@@ -6,38 +6,411 @@
 
   <title>SEO Audit Lab | Roseline</title>
 
+  <meta name="description" content="SEO Audit Lab by Roseline Igwilo — practical technical SEO investigations, findings, diagnosis and recommendations.">
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ================================
+       AUDIT LAB PAGE
+    ================================= */
+
+    .hero {
+      padding: 120px 30px 90px;
+      background:
+        radial-gradient(circle at 85% 20%, #dfe7ff 0, transparent 30%),
+        radial-gradient(circle at 10% 80%, #eee5ff 0, transparent 28%),
+        #f8faff;
+    }
+
+    .hero > * {
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.98;
+      letter-spacing: -3px;
+      margin-bottom: 30px;
+      color: #101936;
+    }
+
+    .hero > p:last-child {
+      max-width: 720px;
+      color: #526080;
+      font-size: 1.15rem;
+    }
+
+    .section {
+      padding: 110px 30px;
+      background: white;
+    }
+
+    .section:nth-of-type(even) {
+      background: #f7f9ff;
+    }
+
+    .section-heading {
+      max-width: 1100px;
+      margin: 0 auto 55px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+      color: #101936;
+    }
+
+    .section-heading > p:last-child {
+      color: #66718f;
+      max-width: 650px;
+    }
+
+    .info-card {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 26px;
+      background: #f8faff;
+      border: 1px solid #dce4ff;
+      box-shadow: 0 15px 45px rgba(40, 60, 130, 0.06);
+    }
+
+    .info-card p {
+      color: #596682;
+      margin-bottom: 18px;
+      max-width: 800px;
+    }
+
+    .info-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* INVESTIGATION CARDS */
+
+    .card-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .portfolio-card {
+      min-height: 360px;
+      padding: 35px;
+      border-radius: 26px;
+      background: #f8faff;
+      border: 1px solid #dce4ff;
+      box-shadow: 0 12px 35px rgba(40, 60, 130, 0.05);
+      transition: 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-7px);
+      border-color: #7891ff;
+      box-shadow: 0 25px 55px rgba(40, 70, 150, 0.14);
+    }
+
+    .card-number {
+      display: block;
+      color: #7080bd;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 45px;
+    }
+
+    .card-category {
+      color: #315cff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      margin-bottom: 12px;
+    }
+
+    .portfolio-card h3 {
+      color: #101936;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .portfolio-card > p:not(.card-category) {
+      color: #596682;
+      margin-bottom: 25px;
+    }
+
+    .card-detail {
+      padding-top: 18px;
+      border-top: 1px solid #dce4ff;
+      color: #526080;
+      font-size: 0.9rem;
+    }
+
+    .card-detail strong {
+      color: #101936;
+    }
+
+    /* RESULTS */
+
+    .results-section {
+      background: #101936 !important;
+      color: white;
+    }
+
+    .results-section .section-heading h2 {
+      color: white;
+    }
+
+    .results-section .section-heading > p:last-child {
+      color: #bac5e4;
+    }
+
+    .results-note {
+      max-width: 1100px;
+      margin: 0 auto 35px;
+      padding: 18px 22px;
+      border-left: 4px solid #315cff;
+      background: #18244a;
+      color: #cbd5f5;
+      border-radius: 8px;
+    }
+
+    .results-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .result-card {
+      padding: 28px;
+      min-height: 190px;
+      background: #18244a;
+      border: 1px solid #34457f;
+      border-radius: 20px;
+    }
+
+    .result-number {
+      display: block;
+      color: #91a7ff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .result-card h3 {
+      color: white;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .result-card p {
+      color: #bac5e4;
+      font-size: 0.92rem;
+    }
+
+    /* AUDIT METHOD */
+
+    .method-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+
+    .method-step {
+      padding: 25px 20px;
+      background: white;
+      border: 1px solid #dce4ff;
+      border-radius: 18px;
+    }
+
+    .method-step span {
+      color: #315cff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .method-step h3 {
+      margin-top: 10px;
+      color: #101936;
+      font-size: 1.1rem;
+    }
+
+    /* WHAT THIS BUILDS */
+
+    .build-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .build-card {
+      padding: 35px;
+      border-radius: 22px;
+      background: white;
+      border: 1px solid #dce4ff;
+    }
+
+    .build-card h3 {
+      color: #101936;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .build-card p {
+      color: #596682;
+    }
+
+    /* CTA */
+
+    .cta-section {
+      padding: 100px 30px;
+      background:
+        linear-gradient(135deg, #eef2ff, #ffffff);
+    }
+
+    .cta-box {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #17245c, #315cff);
+      color: white;
+    }
+
+    .cta-box .eyebrow {
+      color: #b9c8ff;
+    }
+
+    .cta-box h2 {
+      max-width: 750px;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .cta-box p {
+      max-width: 650px;
+      color: #e0e7ff;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 10px;
+      background: white;
+      color: #203fc4;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    @media (max-width: 850px) {
+      .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .method-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .build-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 750px) {
+      .hero {
+        padding: 80px 20px 70px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 14vw, 4.5rem);
+        letter-spacing: -2px;
+      }
+
+      .section {
+        padding: 80px 20px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .portfolio-card {
+        min-height: 320px;
+        padding: 28px;
+      }
+
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: 70px 20px;
+      }
+
+      .cta-box {
+        padding: 35px 25px;
+        border-radius: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- NAVIGATION -->
   <header class="navbar">
-    <div class="logo">ROSELINE.</div>
+    <div class="nav-container">
+      <a href="index.html" class="logo">ROSELINE<span>.</span></a>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="technical-seo.html">Technical SEO</a>
-      <a href="audit-lab.html">Audit Lab</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="technical-seo.html">Technical SEO</a>
+        <a href="audit-lab.html">Audit Lab</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
   </header>
-
 
   <main>
 
     <!-- HERO -->
     <section class="hero">
+
       <p class="eyebrow">SEO AUDIT LAB</p>
 
-      <h1>Learning to think like a technical SEO auditor.</h1>
+      <h1>
+        Learning to think like a technical SEO auditor.
+      </h1>
 
       <p>
         Practical technical SEO investigations focused on identifying
         problems, understanding their causes, and developing sensible
         solutions.
       </p>
+
     </section>
 
 
@@ -45,9 +418,11 @@
     <section class="section">
 
       <div class="section-heading">
+
         <p class="eyebrow">ABOUT THIS LAB</p>
 
         <h2>Practice work, clearly labelled.</h2>
+
       </div>
 
       <div class="info-card">
@@ -88,7 +463,6 @@
         </p>
 
       </div>
-
 
       <div class="card-grid">
 
@@ -268,4 +642,228 @@
           </p>
 
           <div class="card-detail">
-            <strong>Focus
+            <strong>Focus:</strong>
+            URL parameters, duplication and crawl efficiency.
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULTS -->
+    <section class="section results-section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">PRACTICE RESULTS</p>
+
+        <h2>Key findings from the e-commerce investigation.</h2>
+
+        <p>
+          The following findings come from the practice e-commerce audit
+          scenario investigated in the lab. They represent analysis and
+          diagnosis, not client performance results.
+        </p>
+
+      </div>
+
+      <div class="results-note">
+        <strong>Audit scenario:</strong>
+        25,000 URLs discovered, 8,000 indexed, 5,000 parameter variations,
+        1,200 404s, 300 important orphan product pages, 800 noindex pages,
+        and 400 important product pages canonicalised elsewhere.
+      </div>
+
+      <div class="results-grid">
+
+        <article class="result-card">
+          <span class="result-number">FINDING 01</span>
+          <h3>URL Explosion</h3>
+          <p>
+            Parameter and filter variations were creating large numbers
+            of URLs, contributing to inefficient crawling.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 02</span>
+          <h3>Crawl Inefficiency</h3>
+          <p>
+            Googlebot was frequently crawling parameter URLs, indicating
+            that crawl resources were being spent on low-value variations.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 03</span>
+          <h3>Orphan Product Pages</h3>
+          <p>
+            300 important product pages lacked sufficient internal linking,
+            creating a discoverability and architecture problem.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 04</span>
+          <h3>Indexation Signals</h3>
+          <p>
+            Noindex and canonical signals required an intent review to
+            determine whether important pages were being unnecessarily
+            excluded or consolidated.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 05</span>
+          <h3>404 Investigation</h3>
+          <p>
+            The 1,200 404 URLs should not be bulk-redirected automatically.
+            Each should be assessed based on whether the page was removed,
+            moved or deleted accidentally.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 06</span>
+          <h3>Sitemap Quality</h3>
+          <p>
+            The sitemap should be reviewed so it contains the intended
+            canonical, indexable and successfully responding URLs.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 07</span>
+          <h3>Architecture Depth</h3>
+          <p>
+            Some important product pages were 5–7 clicks from the homepage,
+            making internal-link structure and navigation worth reviewing.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 08</span>
+          <h3>Nonindexed Does Not Mean Broken</h3>
+          <p>
+            The 17,000 discovered but nonindexed URLs were not treated as
+            automatically problematic. Their intended indexability must
+            be classified first.
+          </p>
+        </article>
+
+        <article class="result-card">
+          <span class="result-number">FINDING 09</span>
+          <h3>Canonical Is Not Cannibalization</h3>
+          <p>
+            Canonicalisation was evaluated as a URL consolidation signal,
+            not automatically treated as keyword cannibalisation.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- AUDIT METHOD -->
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">AUDIT METHOD</p>
+
+        <h2>How I approach a technical problem.</h2>
+
+        <p>
+          The goal is not simply to identify errors. The goal is to
+          understand what is happening and determine what matters most.
+        </p>
+
+      </div>
+
+      <div class="method-grid">
+
+        <div class="method-step">
+          <span>01</span>
+          <h3>Problem</h3>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Evidence</h3>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Diagnosis</h3>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Recommendation</h3>
+        </div>
+
+        <div class="method-step">
+          <span>05</span>
+          <h3>Priority</h3>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- WHAT THIS BUILDS -->
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">WHAT THIS BUILDS</p>
+
+        <h2>More than a checklist.</h2>
+
+        <p>
+          These exercises are designed to develop the thinking required
+          to work through real technical SEO problems.
+        </p>
+
+      </div>
+
+      <div class="build-grid">
+
+        <article class="build-card">
+          <h3>Think in systems.</h3>
+          <p>
+            Understand how crawling, indexing, architecture, links and
+            technical signals interact.
+          </p>
+        </article>
+
+        <article class="build-card">
+          <h3>Prioritise problems.</h3>
+          <p>
+            Separate critical technical issues from problems that have
+            little practical impact.
+          </p>
+        </article>
+
+        <article class="build-card">
+          <h3>Recommend solutions.</h3>
+          <p>
+            Turn technical findings into clear, practical actions that
+            can actually be implemented.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta-section">
+
+      <div 
