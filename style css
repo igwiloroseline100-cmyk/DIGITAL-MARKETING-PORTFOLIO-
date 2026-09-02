@@ -1,12 +1,10 @@
-/* =========================================================
-   ROSELINE IGWILO — TECHNICAL SEO PORTFOLIO
-   Premium Navy / Royal Blue Design
-========================================================= */
+/* =====================================================
+   ROSELINE IGWILO — DIGITAL MARKETING PORTFOLIO
+   Homepage / Category Interface
+===================================================== */
 
 
-/* =========================================================
-   1. RESET & GLOBAL
-========================================================= */
+/* ---------- RESET ---------- */
 
 * {
     margin: 0;
@@ -22,7 +20,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: #061326;
     color: #ffffff;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 a {
@@ -30,645 +28,63 @@ a {
     text-decoration: none;
 }
 
-.container {
+span {
+    color: #4b82ff;
+}
+
+
+/* ---------- LAYOUT ---------- */
+
+.hero,
+.expertise-section,
+.about-section,
+.contact-section {
+    width: 100%;
+}
+
+.hero-content,
+.section-intro,
+.category-grid,
+.about-content,
+.contact-section > *,
+.footer-container,
+.nav-container {
     width: 90%;
     max-width: 1180px;
-    margin: 0 auto;
-}
-
-span {
-    color: #3f7cff;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
-/* =========================================================
-   2. NAVIGATION
-========================================================= */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(6, 19, 38, 0.95);
-    border-bottom: 1px solid rgba(63, 124, 255, 0.2);
-    backdrop-filter: blur(12px);
+
+    background: rgba(6, 19, 38, 0.92);
+    border-bottom: 1px solid rgba(75, 130, 255, 0.18);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 .nav-container {
-    min-height: 76px;
+    min-height: 78px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
 }
 
 .logo {
-    font-size: 1.35rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 900;
     letter-spacing: 2px;
 }
 
 .logo span {
-    color: #3f7cff;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-nav a {
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #c7d3e8;
-    transition: 0.3s ease;
-}
-
-nav a:hover {
-    color: #4d84ff;
-}
-
-
-/* =========================================================
-   3. HERO
-========================================================= */
-
-.hero {
-    min-height: 88vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 80% 30%, rgba(37, 91, 210, 0.25), transparent 30%),
-        linear-gradient(135deg, #061326 0%, #091d3b 55%, #061326 100%);
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 420px;
-    height: 420px;
-    border: 1px solid rgba(63, 124, 255, 0.12);
-    border-radius: 50%;
-    right: -140px;
-    top: 80px;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border: 1px solid rgba(63, 124, 255, 0.1);
-    border-radius: 50%;
-    right: -70px;
-    top: 150px;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-}
-
-.eyebrow {
-    color: #4d84ff;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
-}
-
-.hero h1 {
-    max-width: 900px;
-    font-size: clamp(3rem, 7vw, 5.8rem);
-    line-height: 1.03;
-    letter-spacing: -2px;
-    margin-bottom: 28px;
-}
-
-.hero-text {
-    max-width: 720px;
-    color: #b9c7dc;
-    font-size: 1.08rem;
-    margin-bottom: 38px;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 14px 25px;
-    border-radius: 6px;
-    font-weight: 700;
-    transition: 0.3s ease;
-}
-
-.btn-primary {
-    background: #2864e8;
-    color: #ffffff;
-    border: 1px solid #2864e8;
-}
-
-.btn-primary:hover {
-    background: #3f7cff;
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    border: 1px solid #49658d;
-    color: #ffffff;
-}
-
-.btn-secondary:hover {
-    border-color: #4d84ff;
-    color: #4d84ff;
-}
-
-
-/* =========================================================
-   4. GENERAL SECTIONS
-========================================================= */
-
-.section {
-    padding: 110px 0;
-    background: #08172d;
-}
-
-.section:nth-of-type(even) {
-    background: #061326;
-}
-
-.section-heading {
-    max-width: 760px;
-    margin-bottom: 55px;
-}
-
-.section-heading h2 {
-    font-size: clamp(2.3rem, 5vw, 4rem);
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
-}
-
-.section-heading > p:last-child {
-    color: #aebdd3;
-    font-size: 1rem;
-}
-
-
-/* =========================================================
-   5. TECHNICAL SEO CARDS
-========================================================= */
-
-.technical-section {
-    background: #08172d;
-}
-
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-.service-card {
-    position: relative;
-    min-height: 260px;
-    padding: 30px;
-    background: #0c203c;
-    border: 1px solid #18375f;
-    border-radius: 10px;
-    transition: 0.35s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-7px);
-    border-color: #3f7cff;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
-}
-
-.featured-card {
-    border-color: #2864e8;
-    background:
-        linear-gradient(145deg, #102b52, #0b1d36);
-}
-
-.card-number {
-    color: #3f7cff;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 35px;
-}
-
-.service-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-}
-
-.service-card p {
-    color: #aebdd3;
-    font-size: 0.94rem;
-}
-
-
-/* =========================================================
-   6. DARK SECTIONS
-========================================================= */
-
-.dark-section {
-    background: #040d1c;
-}
-
-.dark-section .service-card,
-.dark-section .audit-card {
-    background: #07172d;
-}
-
-
-/* =========================================================
-   7. SEO AUDIT LAB
-========================================================= */
-
-.audit-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-.audit-card {
-    padding: 30px;
-    background: #091b34;
-    border: 1px solid #17375f;
-    border-radius: 10px;
-    transition: 0.3s ease;
-}
-
-.audit-card:hover {
-    transform: translateY(-6px);
-    border-color: #3f7cff;
-}
-
-.audit-card span {
-    display: inline-block;
-    margin-bottom: 18px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.audit-card h3 {
-    font-size: 1.25rem;
-    line-height: 1.3;
-    margin-bottom: 14px;
-}
-
-.audit-card p {
-    color: #aebdd3;
-    font-size: 0.92rem;
-    margin-bottom: 20px;
-}
-
-.audit-card a {
-    color: #4d84ff;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-
-/* =========================================================
-   8. SERVICES
-========================================================= */
-
-.service-category {
-    margin-bottom: 30px;
-    padding: 38px;
-    background: #091a32;
-    border: 1px solid #17375f;
-    border-radius: 12px;
-}
-
-.primary-category {
-    border-color: #2864e8;
-    background: linear-gradient(135deg, #0b2140, #09182d);
-}
-
-.category-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
-}
-
-.category-header h3 {
-    font-size: 1.7rem;
-}
-
-.category-tag {
-    padding: 5px 10px;
-    border: 1px solid #2864e8;
-    border-radius: 4px;
-    color: #4d84ff;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-}
-
-.service-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px 35px;
-}
-
-.service-list li {
-    position: relative;
-    padding-left: 22px;
-    color: #b8c6da;
-}
-
-.service-list li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: #3f7cff;
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   9. BLUE SECTION
-========================================================= */
-
-.blue-section {
-    background:
-        linear-gradient(135deg, #0a2550 0%, #0b3270 50%, #071c3b 100%);
-}
-
-.blue-section .section-heading > p:last-child {
-    color: #c4d3e9;
-}
-
-.simple-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.simple-item {
-    padding: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(0, 0, 0, 0.12);
-    border-radius: 9px;
-}
-
-.simple-item h3 {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-.simple-item p {
-    color: #c1cee0;
-    font-size: 0.9rem;
-}
-
-
-/* =========================================================
-   10. CASE STUDIES
-========================================================= */
-
-.case-study-placeholder {
-    padding: 55px;
-    border-radius: 12px;
-    background: #0a1e39;
-    border: 1px solid #1b416e;
-}
-
-.case-label {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 6px 11px;
-    background: #2864e8;
-    border-radius: 4px;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-}
-
-.case-study-placeholder h3 {
-    max-width: 700px;
-    font-size: 2rem;
-    line-height: 1.25;
-    margin-bottom: 15px;
-}
-
-.case-study-placeholder > p {
-    max-width: 720px;
-    color: #aebdd3;
-}
-
-.evidence-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 30px;
-}
-
-.evidence-row span {
-    color: #c6d3e6;
-    border: 1px solid #29486d;
-    padding: 7px 12px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   11. CONTACT
-========================================================= */
-
-.contact-section {
-    text-align: center;
-    background:
-        radial-gradient(circle at center, #0d2c58 0%, #061326 65%);
-}
-
-.contact-content {
-    max-width: 800px;
-}
-
-.contact-content .eyebrow {
-    margin-bottom: 20px;
-}
-
-.contact-content h2 {
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    line-height: 1.1;
-    margin-bottom: 22px;
-}
-
-.contact-content > p:not(.eyebrow) {
-    color: #b4c2d7;
-    max-width: 650px;
-    margin: 0 auto 32px;
-}
-
-
-/* =========================================================
-   12. FOOTER
-========================================================= */
-
-.footer {
-    padding: 35px 0;
-    background: #030a15;
-    border-top: 1px solid #122945;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
-}
-
-.footer strong {
-    letter-spacing: 1px;
-}
-
-.footer p {
-    color: #7f91aa;
-    font-size: 0.82rem;
-}
-
-
-/* =========================================================
-   13. MOBILE RESPONSIVENESS
-========================================================= */
-
-@media (max-width: 900px) {
-
-    nav {
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 0.76rem;
-    }
-
-    .service-grid,
-    .audit-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .simple-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-@media (max-width: 700px) {
-
-    .container {
-        width: 92%;
-    }
-
-    .nav-container {
-        min-height: 68px;
-    }
-
-    nav {
-        display: none;
-    }
-
-    .hero {
-        min-height: 82vh;
-    }
-
-    .hero h1 {
-        font-size: 3rem;
-        letter-spacing: -1px;
-    }
-
-    .hero-text {
-        font-size: 0.98rem;
-    }
-
-    .section {
-        padding: 80px 0;
-    }
-
-    .section-heading {
-        margin-bottom: 38px;
-    }
-
-    .service-grid,
-    .audit-grid,
-    .simple-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .service-card {
-        min-height: auto;
-    }
-
-    .service-category {
-        padding: 25px;
-    }
-
-    .service-list {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .category-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .case-study-placeholder {
-        padding: 30px;
-    }
-
-    .case-study-placeholder h3 {
-        font-size: 1.55rem;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-
-/* =========================================================
-   14. SMALL PHONE
-========================================================= */
-
-@media (max-width: 420px) {
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .eyebrow {
-        font-size: 0.68rem;
-        letter-spacing: 2px;
-    }
-
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    .section-heading h2 {
-        font-size: 2.35rem;
-    }
-}
+    color:
