@@ -1,1 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Meta Ads | Roseline Igwilo</title>
+
+    <meta name="description" content="Roseline Igwilo — Meta Ads portfolio covering campaign strategy, audience targeting, creative testing, optimization and performance analysis.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9ff;
+            color: #101936;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.96);
+            border-bottom: 1px solid #dce4ff;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #111a45;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #315cff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #26345f;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #315cff;
+        }
+
+        .hero {
+            padding: 110px 25px 90px;
+            background:
+                radial-gradient(circle at 85% 20%, #dfe7ff 0, transparent 30%),
+                radial-gradient(circle at 10% 80%, #eee5ff 0, transparent 28%),
+                #f8faff;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: #315cff;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            max-width: 850px;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: .95;
+            letter-spacing: -3px;
+            margin-bottom: 28px;
+        }
+
+        h1 span {
+            color: #315cff;
+        }
+
+        .hero-text {
+            max-width: 700px;
+            color: #596682;
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 100px 25px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            max-width: 700px;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 18px;
+        }
+
+        .section-title p {
+            color: #66718f;
+        }
+
+        .intro-box {
+            padding: 45px;
+            background: white;
+            border: 1px solid #dce4ff;
+            border-radius: 25px;
+            box-shadow: 0 20px 55px rgba(40,60,130,.07);
+        }
+
+        .intro-box p {
+            max-width: 800px;
+            color: #596682;
+            font-size: 1.05rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-card {
+            padding: 32px;
+            min-height: 230px;
+            background: white;
+            border: 1px solid #dce4ff;
+            border-radius: 22px;
+            transition: .3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(40,70,150,.1);
+            border-color: #7891ff;
+        }
+
+        .number {
+            color: #315cff;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: #66718f;
+        }
+
+        .method {
+            background: #101936;
+            color: white;
+        }
+
+        .method .eyebrow {
+            color: #91a7ff;
+        }
+
+        .method h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 45px;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .method-card {
+            padding: 28px;
+            background: #1b2852;
+            border: 1px solid #34457f;
+            border-radius: 20px;
+        }
+
+        .method-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #b9c8ff;
+        }
+
+        .method-card p {
+            color: #bac5e4;
+            font-size: .92rem;
+        }
+
+        .practice {
+            background: white;
+        }
+
+        .practice-box {
+            padding: 45px;
+            background: linear-gradient(135deg, #17245c, #315cff);
+            color: white;
+            border-radius: 28px;
+            box-shadow: 0 25px 60px rgba(26,49,130,.18);
+        }
+
+        .practice-box .eyebrow {
+            color: #b9c8ff;
+        }
+
+        .practice-box h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .practice-box p {
+            color: #e0e7ff;
+            max-width: 700px;
+        }
+
+        .disclaimer {
+            margin-top: 22px;
+            padding: 16px;
+            border-left: 3px solid #9eb3ff;
+            color: #dce5ff;
+            font-size: .9rem;
+        }
+
+        .cta {
+            text-align: center;
+            background: #f0f3ff;
+        }
+
+        .cta h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #66718f;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 10px;
+            background: #315cff;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button:hover {
+            background: #203fc4;
+        }
+
+        footer {
+            padding: 30px;
+            background: #0b1129;
+            color: #8793b7;
+            text-align: center;
+            font-size: .8rem;
+        }
+
+        footer p + p {
+            margin-top: 6px;
+        }
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
+
+            .skills-grid,
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-box,
+            .practice-box {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: clamp(2.8rem, 14vw, 4.5rem);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            ROSELINE<span>.</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="technical-seo.html">Technical SEO</a>
+            <a href="on-page-seo.html">On-Page SEO</a>
+            <a href="meta-ads.html">Meta Ads</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <div class="hero-inner">
+
+            <p class="eyebrow">META ADS</p>
+
+            <h1>
+                Turning attention into
+                <span>action.</span>
+            </h1>
+
+            <p class="hero-text">
+                Building practical knowledge around Meta advertising,
+                from campaign strategy and audience targeting to creative
+                testing, optimization and performance analysis.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section>
+        <div class="container">
+
+            <div class="section-title">
+                <p class="eyebrow">WHAT I FOCUS ON</p>
+
+                <h2>
+                    Paid media with a
+                    performance mindset.
+                </h2>
+
+                <p>
+                    Effective advertising is more than creating an ad.
+                    It requires the right objective, audience, creative,
+                    budget, measurement and continuous optimization.
+                </p>
+            </div>
+
+            <div class="intro-box">
+
+                <p>
+                    I am developing practical Meta Ads skills across the
+                    campaign lifecycle — from planning and setup to testing,
+                    interpreting performance data and improving campaigns
+                    based on evidence.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section>
+        <div class="container">
+
+            <div class="section-title">
+                <p class="eyebrow">AREAS OF PRACTICE</p>
+
+                <h2>What I work with.</h2>
+            </div>
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+                    <div class="number">01</div>
+                    <h3>Campaign Strategy</h3>
+                    <p>
+                        Selecting campaign objectives and structuring
+                        campaigns around specific business goals.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">02</div>
+                    <h3>Audience Targeting</h3>
+                    <p>
+                        Understanding audiences, targeting options,
+                        custom audiences and lookalike strategies.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">03</div>
+                    <h3>Creative Strategy</h3>
+                    <p>
+                        Developing ad concepts, messaging and creative
+                        variations designed for testing.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">04</div>
+                    <h3>Budget & Bidding</h3>
+                    <p>
+                        Understanding campaign budgets, ad-set budgets,
+                        bidding approaches and spending control.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">05</div>
+                    <h3>A/B Testing</h3>
+                    <p>
+                        Testing variables such as creative, audience,
+                        messaging and campaign approaches.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">06</div>
+                    <h3>Performance Analysis</h3>
+                    <p>
+                        Reading campaign metrics and identifying what is
+                        working, what is failing and what needs attention.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">07</div>
+                    <h3>Optimization</h3>
+                    <p>
+                        Using performance evidence to make informed changes
+                        instead of randomly changing campaigns.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">08</div>
+                    <h3>Reporting</h3>
+                    <p>
+                        Turning campaign data into clear insights,
+                        recommendations and next actions.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- METHOD -->
+
+    <section class="method">
+        <div class="container">
+
+            <p class="eyebrow">CAMPAIGN THINKING</p>
+
+            <h2>
+                Plan → Launch → Measure → Optimize
+            </h2>
+
+            <div class="method-grid">
+
+                <div class="method-card">
+                    <strong>PLAN</strong>
+                    <p>
+                        Define the business goal, audience, offer,
+                        campaign objective and measurement approach.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <strong>LAUNCH</strong>
+                    <p>
+                        Build the campaign structure, ads, targeting,
+                        placements and budget.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <strong>MEASURE</strong>
+                    <p>
+                        Monitor meaningful metrics and compare performance
+                        against the campaign objective.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <strong>DIAGNOSE</strong>
+                    <p>
+                        Identify where performance is breaking down and
+                        separate symptoms from actual causes.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <strong>OPTIMIZE</strong>
+                    <p>
+                        Make controlled changes based on evidence and
+                        observe the resulting performance.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <strong>REPORT</strong>
+                    <p>
+                        Summarize performance, insights, decisions and
+                        recommended next steps.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PRACTICE -->
+
+    <section class="practice">
+
+        <div class="container">
+
+            <div class="practice-box">
+
+                <p class="eyebrow">PRACTICE WORK</p>
+
+                <h2>
+                    Building campaigns before managing campaigns.
+                </h2>
+
+                <p>
+                    Portfolio projects will demonstrate campaign planning,
+                    audience research, creative concepts, testing strategies,
+                    performance analysis and optimization decisions.
+                </p>
+
+                <div class="disclaimer">
+                    Practice campaigns will be clearly labelled as learning
+                    projects. No client results, revenue or performance
+                    figures will be presented unless they are genuinely
+                    achieved and documented.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <p class="eyebrow">EXPLORE MORE</p>
+
+            <h2>
+                See the SEO work.
+            </h2>
+
+            <p>
+                Explore the technical SEO work, investigations and
+                practical auditing projects in the portfolio.
+            </p>
+
+            <a href="technical-seo.html" class="button">
+                Explore Technical SEO →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 Roseline Igwilo. All rights reserved.</p>
+    <p>Technical SEO • Digital Marketing • Meta Ads</p>
+</footer>
+
+</body>
+  </html>
