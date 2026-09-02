@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coding & Web Development | Roseline Igwilo</title>
+
+    <meta name="description" content="Roseline Igwilo — Coding and Web Development portfolio covering HTML, CSS, JavaScript, Python and modern web development.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9ff;
+            color: #101936;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.96);
+            border-bottom: 1px solid #dce4ff;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #111a45;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #315cff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #26345f;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #315cff;
+        }
+
+        .hero {
+            padding: 110px 25px 90px;
+            background:
+                radial-gradient(circle at 85% 20%, #dfe7ff 0, transparent 30%),
+                radial-gradient(circle at 10% 80%, #eee5ff 0, transparent 28%),
+                #f8faff;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: #315cff;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            max-width: 900px;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: .95;
+            letter-spacing: -3px;
+            margin-bottom: 28px;
+        }
+
+        h1 span {
+            color: #315cff;
+        }
+
+        .hero-text {
+            max-width: 720px;
+            color: #596682;
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 100px 25px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            max-width: 720px;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 18px;
+        }
+
+        .section-title p {
+            color: #66718f;
+        }
+
+        .intro-box {
+            padding: 45px;
+            background: white;
+            border: 1px solid #dce4ff;
+            border-radius: 25px;
+            box-shadow: 0 20px 55px rgba(40,60,130,.07);
+        }
+
+        .intro-box p {
+            max-width: 800px;
+            color: #596682;
+            font-size: 1.05rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-card {
+            padding: 32px;
+            min-height: 230px;
+            background: white;
+            border: 1px solid #dce4ff;
+            border-radius: 22px;
+            transition: .3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(40,70,150,.1);
+            border-color: #7891ff;
+        }
+
+        .number {
+            color: #315cff;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: #66718f;
+        }
+
+        .dark-section {
+            background: #101936;
+            color: white;
+        }
+
+        .dark-section .eyebrow {
+            color: #91a7ff;
+        }
+
+        .dark-section h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 45px;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .learning-card {
+            padding: 28px;
+            background: #1b2852;
+            border: 1px solid #34457f;
+            border-radius: 20px;
+        }
+
+        .learning-card strong {
+            display: block;
+            color: #b9c8ff;
+            margin-bottom: 8px;
+        }
+
+        .learning-card p {
+            color: #bac5e4;
+            font-size: .92rem;
+        }
+
+        .projects {
+            background: white;
+        }
+
+        .project-box {
+            padding: 45px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #17245c, #315cff);
+            color: white;
+            box-shadow: 0 25px 60px rgba(26,49,130,.18);
+        }
+
+        .project-box .eyebrow {
+            color: #b9c8ff;
+        }
+
+        .project-box h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .project-box p {
+            max-width: 720px;
+            color: #e0e7ff;
+        }
+
+        .project-list {
+            margin-top: 28px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .project-list div {
+            padding: 15px 18px;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 12px;
+            color: #edf1ff;
+        }
+
+        .cta {
+            text-align: center;
+            background: #f0f3ff;
+        }
+
+        .cta h2 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #66718f;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 10px;
+            background: #315cff;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button:hover {
+            background: #203fc4;
+        }
+
+        footer {
+            padding: 30px;
+            background: #0b1129;
+            color: #8793b7;
+            text-align: center;
+            font-size: .8rem;
+        }
+
+        footer p + p {
+            margin-top: 6px;
+        }
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
+
+            .skills-grid,
+            .learning-grid,
+            .project-list {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-box,
+            .project-box {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: clamp(2.8rem, 14vw, 4.5rem);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            ROSELINE<span>.</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="technical-seo.html">Technical SEO</a>
+            <a href="on-page-seo.html">On-Page SEO</a>
+            <a href="meta-ads.html">Meta Ads</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <div class="hero-inner">
+
+            <p class="eyebrow">CODING & WEB DEVELOPMENT</p>
+
+            <h1>
+                Building for the
+                <span>web.</span>
+            </h1>
+
+            <p class="hero-text">
+                Developing practical programming and web development skills
+                to understand how websites are built, how they work and how
+                technical decisions affect the user and the search engine.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- INTRO -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+                <p class="eyebrow">THE FOUNDATION</p>
+
+                <h2>
+                    Learning to build,
+                    not just use.
+                </h2>
+
+                <p>
+                    My development journey focuses on understanding the
+                    technologies behind websites and gradually building
+                    real, functional projects.
+                </p>
+            </div>
+
+            <div class="intro-box">
+
+                <p>
+                    Coding strengthens my technical foundation by connecting
+                    what I understand from Technical SEO with the actual
+                    structure and behaviour of websites.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TECHNOLOGIES -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <p class="eyebrow">TECHNOLOGIES</p>
+
+                <h2>
+                    What I'm learning.
+                </h2>
+
+                <p>
+                    Building from the fundamentals toward full web
+                    development and programming.
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+                    <div class="number">01</div>
+                    <h3>HTML</h3>
+                    <p>
+                        Building the structure and semantic foundation
+                        of web pages.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">02</div>
+                    <h3>CSS</h3>
+                    <p>
+                        Creating responsive layouts, visual systems,
+                        spacing, typography and user interfaces.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">03</div>
+                    <h3>JavaScript</h3>
+                    <p>
+                        Learning programming logic and creating interactive
+                        and dynamic web experiences.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">04</div>
+                    <h3>Python</h3>
+                    <p>
+                        Developing programming fundamentals and exploring
+                        automation, data and backend possibilities.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">05</div>
+                    <h3>Git & GitHub</h3>
+                    <p>
+                        Learning version control, repositories,
+                        collaboration and practical project deployment.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="number">06</div>
+                    <h3>Web Development</h3>
+                    <p>
+                        Connecting frontend, backend and technical concepts
+                        to build complete web experiences.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEARNING APPROACH -->
+
+    <section class="dark-section">
+
+        <div class="container">
+
+            <p class="eyebrow">DEVELOPMENT MINDSET</p>
+
+            <h2>
+                Learn → Build → Test → Improve
+            </h2>
+
+            <div class="learning-grid">
+
+                <div class="learning-card">
+                    <strong>LEARN</strong>
+                    <p>
+                        Understand the fundamentals instead of memorising
+                        code without knowing what it does.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <strong>BUILD</strong>
+                    <p>
+                        Turn concepts into working pages, applications
+                        and practical projects.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <strong>TEST</strong>
+                    <p>
+                        Find bugs, inspect behaviour and understand why
+                        something is not working.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <strong>DEBUG</strong>
+                    <p>
+                        Diagnose problems systematically and fix them
+                        rather than randomly changing code.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <strong>IMPROVE</strong>
+                    <p>
+                        Refine structure, performance, usability and
+                        maintainability.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <strong>DEPLOY</strong>
+                    <p>
+                        Put finished projects online and maintain them
+                        using practical development workflows.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section class="projects">
+
+        <div class="container">
+
+            <div class="project-box">
+
+                <p class="eyebrow">PROJECTS</p>
+
+                <h2>
+                    Building a portfolio through real projects.
+                </h2>
+
+                <p>
+                    Development projects will be added as they are completed,
+                    showing the problem, technologies used, implementation
+                    and final result.
+                </p>
+
+                <div class="project-list">
+
+                    <div>Responsive Websites</div>
+                    <div>Landing Pages</div>
+                    <div>Interactive JavaScript Projects</div>
+                    <div>Python Projects</div>
+                    <div>SEO-Friendly Web Pages</div>
+                    <div>GitHub Projects</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <p class="eyebrow">EXPLORE THE PORTFOLIO</p>
+
+            <h2>
+                Technical thinking meets development.
+            </h2>
+
+            <p>
+                Explore the technical SEO work and see how development
+                knowledge connects with website performance and search.
+            </p>
+
+            <a href="technical-seo.html" class="button">
+                Explore Technical SEO →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 Roseline Igwilo. All rights reserved.</p>
+    <p>Technical SEO • Digital Marketing • Coding & Web Development</p>
+</footer>
+
+</body>
+              </html>
