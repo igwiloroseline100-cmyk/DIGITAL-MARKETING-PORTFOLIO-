@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>On-Page SEO | Roseline</title>
+
+  <meta name="description" content="On-Page SEO by Roseline Igwilo — search intent, content structure, titles, headings, internal linking and page optimisation.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .hero {
+      padding: 120px 30px 90px;
+      background:
+        radial-gradient(circle at 85% 20%, #dfe7ff 0, transparent 30%),
+        radial-gradient(circle at 10% 80%, #eee5ff 0, transparent 28%),
+        #f8faff;
+    }
+
+    .hero-content,
+    .section-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: .98;
+      letter-spacing: -3px;
+      margin-bottom: 30px;
+    }
+
+    .hero-text {
+      max-width: 720px;
+      color: #526080;
+      font-size: 1.15rem;
+    }
+
+    .section {
+      padding: 110px 30px;
+      background: white;
+    }
+
+    .section:nth-of-type(even) {
+      background: #f7f9ff;
+    }
+
+    .section-title {
+      max-width: 700px;
+      margin-bottom: 55px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .section-title p:last-child {
+      color: #66718f;
+    }
+
+    .topic-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .topic-card {
+      padding: 35px;
+      min-height: 280px;
+      border-radius: 25px;
+      background: #f8faff;
+      border: 1px solid #dce4ff;
+      transition: .3s ease;
+    }
+
+    .topic-card:hover {
+      transform: translateY(-6px);
+      border-color: #7891ff;
+      box-shadow: 0 20px 45px rgba(40,70,150,.12);
+    }
+
+    .topic-number {
+      color: #7080bd;
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .topic-card h3 {
+      font-size: 1.8rem;
+      margin: 35px 0 14px;
+    }
+
+    .topic-card p {
+      color: #596682;
+    }
+
+    .process {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+
+    .process-card {
+      padding: 25px 20px;
+      border: 1px solid #dce4ff;
+      border-radius: 18px;
+      background: white;
+    }
+
+    .process-card span {
+      color: #315cff;
+      font-weight: 800;
+      font-size: .75rem;
+    }
+
+    .process-card h3 {
+      margin-top: 12px;
+      font-size: 1.1rem;
+    }
+
+    .cta {
+      padding: 100px 30px;
+      background: linear-gradient(135deg, #17245c, #315cff);
+      color: white;
+    }
+
+    .cta-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .cta h2 {
+      max-width: 750px;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      max-width: 650px;
+      color: #e0e7ff;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 10px;
+      background: white;
+      color: #203fc4;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    @media (max-width: 850px) {
+      .process {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 750px) {
+      .hero {
+        padding: 80px 20px 70px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 14vw, 4.5rem);
+        letter-spacing: -2px;
+      }
+
+      .section {
+        padding: 80px 20px;
+      }
+
+      .topic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        padding: 75px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+
+      <a href="index.html" class="logo">
+        ROSELINE<span>.</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="technical-seo.html">Technical SEO</a>
+        <a href="audit-lab.html">Audit Lab</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <p class="eyebrow">ON-PAGE SEO</p>
+
+        <h1>
+          Making pages clearer for search and users.
+        </h1>
+
+        <p class="hero-text">
+          On-Page SEO focuses on how content, page structure and
+          search intent work together to help search engines understand
+          what a page is about and help users find useful information.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CORE AREAS -->
+    <section class="section">
+
+      <div class="section-inner">
+
+        <div class="section-title">
+
+          <p class="eyebrow">CORE AREAS</p>
+
+          <h2>What I work on.</h2>
+
+          <p>
+            On-page optimisation connects the content of a page with
+            the needs of the person searching for it.
+          </p>
+
+        </div>
+
+
+        <div class="topic-grid">
+
+          <article class="topic-card">
+            <span class="topic-number">01</span>
+            <h3>Search Intent</h3>
+            <p>
+              Understanding what users are actually trying to accomplish
+              when they search and aligning the page with that intent.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">02</span>
+            <h3>Title Tags</h3>
+            <p>
+              Creating clear, relevant page titles that accurately
+              communicate the subject of the page.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">03</span>
+            <h3>Meta Descriptions</h3>
+            <p>
+              Writing useful descriptions that accurately summarise
+              the page and encourage qualified searchers to visit.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">04</span>
+            <h3>Headings & Structure</h3>
+            <p>
+              Organising content with logical headings and a structure
+              that makes the page easier to understand and navigate.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">05</span>
+            <h3>Content Optimisation</h3>
+            <p>
+              Improving relevance, usefulness, clarity and topical
+              coverage without forcing keywords unnaturally into content.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">06</span>
+            <h3>Keyword Strategy</h3>
+            <p>
+              Connecting relevant search terms with the right pages
+              while avoiding keyword stuffing and unnecessary duplication.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">07</span>
+            <h3>Internal Linking</h3>
+            <p>
+              Using relevant internal links to connect related content,
+              support navigation and strengthen site structure.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">08</span>
+            <h3>Image Optimisation</h3>
+            <p>
+              Optimising images through appropriate formats, dimensions,
+              file sizes, filenames and useful alternative text.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">09</span>
+            <h3>URL Optimisation</h3>
+            <p>
+              Creating understandable, consistent URLs that accurately
+              represent the subject and structure of the page.
+            </p>
+          </article>
+
+
+          <article class="topic-card">
+            <span class="topic-number">10</span>
+            <h3>Content Quality</h3>
+            <p>
+              Reviewing whether content is useful, original, trustworthy,
+              complete enough for its purpose and genuinely helpful to users.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- WORKFLOW -->
+    <section class="section">
+
+      <div class="section-inner">
+
+        <div class="section-title">
+
+          <p class="eyebrow">OPTIMISATION PROCESS</p>
+
+          <h2>From search query to useful page.</h2>
+
+          <p>
+            A practical workflow for analysing and improving a page.
+          </p>
+
+        </div>
+
+
+        <div class="process">
+
+          <div class="process-card">
+            <span>01</span>
+            <h3>Understand Intent</h3>
+          </div>
+
+          <div class="process-card">
+            <span>02</span>
+            <h3>Analyse the Page</h3>
+          </div>
+
+          <div class="process-card">
+            <span>03</span>
+            <h3>Identify Gaps</h3>
+          </div>
+
+          <div class="process-card">
+            <span>04</span>
+            <h3>Optimise</h3>
+          </div>
+
+          <div class="process-card">
+            <span>05</span>
+            <h3>Review</h3>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+      <div class="cta-inner">
+
+        <p class="eyebrow" style="color:#b9c8ff;">
+          TECHNICAL + ON-PAGE
+        </p>
+
+        <h2>
+          Strong technical foundations. Better pages.
+        </h2>
+
+        <p>
+          Technical SEO helps search engines access and understand a site.
+          On-Page SEO helps individual pages clearly communicate their value.
+        </p>
+
+        <a href="technical-seo.html" class="cta-button">
+          Explore Technical SEO →
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+
+    <p>© 2026 Roseline Igwilo. All rights reserved.</p>
+
+    <p>Technical SEO • On-Page SEO • Digital Marketing</p>
+
+  </footer>
+
+</body>
+          </html>
