@@ -1,10 +1,7 @@
-/* =====================================================
-   ROSELINE IGWILO — DIGITAL MARKETING PORTFOLIO
-   Homepage / Category Interface
-===================================================== */
-
-
-/* ---------- RESET ---------- */
+/* ================================
+   ROSELINE IGWILO — PORTFOLIO
+   MAIN STYLESHEET
+================================ */
 
 * {
     margin: 0;
@@ -18,73 +15,500 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #061326;
-    color: #ffffff;
+    background: #f7f9ff;
+    color: #101936;
     line-height: 1.6;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-span {
-    color: #4b82ff;
-}
-
-
-/* ---------- LAYOUT ---------- */
-
-.hero,
-.expertise-section,
-.about-section,
-.contact-section {
-    width: 100%;
-}
-
-.hero-content,
-.section-intro,
-.category-grid,
-.about-content,
-.contact-section > *,
-.footer-container,
-.nav-container {
-    width: 90%;
-    max-width: 1180px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-/* =====================================================
+/* ================================
    NAVIGATION
-===================================================== */
+================================ */
 
 .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    background: rgba(6, 19, 38, 0.92);
-    border-bottom: 1px solid rgba(75, 130, 255, 0.18);
-
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid #dce4ff;
+    backdrop-filter: blur(10px);
 }
 
 .nav-container {
-    min-height: 78px;
-
+    max-width: 1150px;
+    margin: auto;
+    padding: 18px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .logo {
-    font-size: 1.25rem;
-    font-weight: 900;
-    letter-spacing: 2px;
+    text-decoration: none;
+    color: #111a45;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .logo span {
-    color:
+    color: #315cff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #26345f;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #315cff;
+}
+
+/* ================================
+   INTRO / HERO
+================================ */
+
+.intro-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 90px 30px;
+    background:
+        radial-gradient(circle at 85% 20%, #dfe7ff 0, transparent 30%),
+        radial-gradient(circle at 10% 80%, #eee5ff 0, transparent 28%),
+        #f8faff;
+}
+
+.intro-content {
+    max-width: 1100px;
+    width: 100%;
+    margin: auto;
+}
+
+.eyebrow {
+    color: #315cff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.intro-section h1 {
+    max-width: 850px;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.98;
+    letter-spacing: -3px;
+    margin-bottom: 30px;
+    color: #101936;
+}
+
+.intro-section h1 span {
+    color: #315cff;
+}
+
+.intro-text {
+    max-width: 720px;
+    color: #526080;
+    font-size: 1.15rem;
+    margin-bottom: 35px;
+}
+
+.specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 850px;
+}
+
+.specialties span {
+    background: white;
+    border: 1px solid #d5defb;
+    padding: 11px 17px;
+    border-radius: 50px;
+    color: #24345f;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(40, 70, 150, 0.06);
+}
+
+/* ================================
+   OBJECTIVE BOX
+================================ */
+
+.intro-goal {
+    margin-top: 55px;
+    max-width: 850px;
+    padding: 35px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #111d4a, #263f9d);
+    color: white;
+    box-shadow: 0 25px 60px rgba(26, 49, 130, 0.2);
+}
+
+.goal-label {
+    color: #9eb3ff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.intro-goal h2 {
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+    line-height: 1.15;
+    margin-bottom: 15px;
+}
+
+.intro-goal p:last-child {
+    color: #dce5ff;
+    max-width: 700px;
+}
+
+/* ================================
+   EXPERTISE
+================================ */
+
+.expertise-section {
+    padding: 110px 30px;
+    background: white;
+}
+
+.section-heading {
+    max-width: 1100px;
+    margin: auto auto 55px;
+}
+
+.section-heading h2 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 18px;
+    letter-spacing: -2px;
+}
+
+.section-heading > p:last-child {
+    color: #66718f;
+    max-width: 600px;
+}
+
+/* ================================
+   PORTFOLIO CARDS
+================================ */
+
+.portfolio-cards {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.portfolio-card {
+    position: relative;
+    min-height: 330px;
+    padding: 35px;
+    border-radius: 26px;
+    text-decoration: none;
+    color: #101936;
+    background: #f8faff;
+    border: 1px solid #dce4ff;
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+    border-color: #7891ff;
+    box-shadow: 0 25px 55px rgba(40, 70, 150, 0.14);
+}
+
+.featured-card {
+    background: linear-gradient(135deg, #17245c, #315cff);
+    color: white;
+    border: none;
+    min-height: 390px;
+}
+
+.featured-card .card-type {
+    color: #b9c8ff;
+}
+
+.featured-card .card-number {
+    color: #b9c8ff;
+}
+
+.featured-card .card-content p {
+    color: #e0e7ff;
+}
+
+.card-number {
+    color: #7080bd;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+}
+
+.card-type {
+    color: #315cff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    margin-bottom: 12px;
+}
+
+.card-content h3 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.card-content p {
+    color: #596682;
+    max-width: 480px;
+    margin-bottom: 28px;
+}
+
+.card-link {
+    display: inline-block;
+    color: #315cff;
+    font-weight: 800;
+    font-size: 0.92rem;
+}
+
+.featured-card .card-link {
+    color: white;
+}
+
+/* ================================
+   ABOUT
+================================ */
+
+.about-section {
+    padding: 110px 30px;
+    background:
+        linear-gradient(135deg, #f0f3ff, #ffffff);
+}
+
+.about-box {
+    max-width: 1100px;
+    margin: auto;
+    padding: 65px;
+    border-radius: 30px;
+    background: white;
+    border: 1px solid #dce4ff;
+    box-shadow: 0 20px 60px rgba(40, 60, 130, 0.08);
+}
+
+.about-box h2 {
+    max-width: 700px;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 22px;
+}
+
+.about-box > p {
+    max-width: 700px;
+    color: #596682;
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+}
+
+/* ================================
+   BUTTON
+================================ */
+
+.primary-button {
+    display: inline-block;
+    padding: 14px 22px;
+    border-radius: 10px;
+    background: #315cff;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    background: #203fc4;
+    transform: translateY(-2px);
+}
+
+/* ================================
+   CONTACT
+================================ */
+
+.contact-section {
+    padding: 110px 30px;
+    background: #101936;
+}
+
+.contact-box {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.contact-box .eyebrow {
+    color: #91a7ff;
+}
+
+.contact-box h2 {
+    color: white;
+    max-width: 700px;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.contact-box > p {
+    color: #bac5e4;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.contact-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.contact-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 22px;
+    min-width: 280px;
+    background: #1b2852;
+    border: 1px solid #34457f;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.contact-option:hover {
+    transform: translateY(-4px);
+    border-color: #7f96ff;
+}
+
+.contact-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #315cff;
+    color: white;
+    font-weight: 800;
+}
+
+.contact-option small {
+    display: block;
+    color: #9eadd5;
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+}
+
+.contact-option strong {
+    font-size: 0.9rem;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer {
+    padding: 30px;
+    background: #0b1129;
+    color: #8793b7;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.footer p + p {
+    margin-top: 6px;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 750px) {
+
+    .nav-container {
+        padding: 16px 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .intro-section {
+        min-height: auto;
+        padding: 75px 20px;
+    }
+
+    .intro-section h1 {
+        font-size: clamp(2.8rem, 14vw, 4.5rem);
+        letter-spacing: -2px;
+    }
+
+    .intro-text {
+        font-size: 1rem;
+    }
+
+    .intro-goal {
+        padding: 28px;
+        border-radius: 20px;
+    }
+
+    .expertise-section,
+    .about-section,
+    .contact-section {
+        padding: 80px 20px;
+    }
+
+    .portfolio-cards {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .portfolio-card,
+    .featured-card {
+        min-height: 320px;
+        padding: 28px;
+    }
+
+    .card-number {
+        margin-bottom: 38px;
+    }
+
+    .about-box {
+        padding: 35px 25px;
+        border-radius: 22px;
+    }
+
+    .contact-option {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .specialties {
+        gap: 8px;
+    }
+
+    .specialties span {
+        font-size: 0.82rem;
+        padding: 9px 13px;
+    }
+   }
