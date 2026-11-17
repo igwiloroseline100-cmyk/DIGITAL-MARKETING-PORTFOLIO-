@@ -62,3 +62,47 @@ body.quick-bag-open{overflow:hidden}
 .payment-options .btn[disabled]{opacity:.48;cursor:not-allowed}
 .payment-safety{font-size:.78rem;color:var(--muted);margin:13px 0 0}
 @media(max-width:640px){.bank-options{grid-template-columns:1fr}.quick-bag-trigger{right:13px;bottom:13px;padding:11px 13px;font-size:.82rem}.quick-bag-panel{width:min(420px,100%)}.quick-bag-header,.quick-bag-items,.quick-bag-footer{padding-left:18px;padding-right:18px}.toast{bottom:80px;right:13px;left:13px}}
+
+
+/* Responsive polish: subtle, performant transitions and non-blocking shopping feedback */
+.product-card{transition:transform .24s cubic-bezier(.2,.75,.25,1),box-shadow .24s ease,border-color .24s ease}
+.product-card:hover,.product-card:focus-within{transform:translateY(-4px);box-shadow:0 16px 36px rgba(21,43,31,.10);border-color:#ccd9ce}
+.product-card:hover .product-media>span{transform:translateY(-5px) scale(1.06)}
+.quick-add{transition:background-color .2s ease,color .2s ease}
+.quick-add:hover{background:#dfece0;color:#214a34}
+.nav-menu>a{position:relative;transition:color .18s ease}
+.nav-menu>a::after{content:"";height:2px;position:absolute;left:0;right:100%;bottom:-9px;background:var(--rust);transition:right .21s ease}
+.nav-menu>a:hover::after,.nav-menu>a[aria-current="page"]::after{right:0}
+.quick-bag-trigger{transition:background-color .2s,transform .22s,box-shadow .22s}
+.quick-bag-trigger:hover{transform:translateY(-3px);box-shadow:0 16px 37px rgba(20,36,29,.25)}
+.quick-bag-trigger.bag-pop{animation:bag-feedback .38s cubic-bezier(.18,.8,.3,1)}
+.quick-bag-panel:not([hidden]){animation:bag-enter .3s cubic-bezier(.2,.75,.2,1) both}
+.quick-bag-scrim:not([hidden]){animation:bag-dim .23s ease-out both}
+.quick-bag-close{transition:background-color .2s,transform .2s}
+.quick-bag-close:hover{background:#e0e8de;transform:rotate(8deg)}
+.payment-options:not([hidden]){animation:payment-enter .3s ease-out both}
+.payment-preview-item{border:1px solid #dde5db;border-radius:10px;background:#f6f8f3;padding:17px 19px;margin:15px 0}
+.payment-preview-item dl{display:grid;grid-template-columns:140px 1fr;gap:8px 13px;margin:0}
+.payment-preview-item dt{color:#5e7164;font-size:.83rem}
+.payment-preview-item dd{margin:0;font-weight:790;font-size:.87rem;overflow-wrap:anywhere}
+.payment-warning{font-size:.78rem;color:#8a4d31;font-weight:760;margin-top:12px}
+.payment-methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border:0;padding:0;margin-top:24px}
+.payment-methods legend{font-weight:800;font-size:.9rem;margin-bottom:12px}
+.payment-method{display:flex;align-items:center;gap:8px;border:1px solid #d7dfd3;border-radius:9px;padding:13px;cursor:pointer;font-size:.86rem;font-weight:750;line-height:1.32;transition:background-color .2s,border-color .2s,transform .2s}
+.payment-method:hover,.bank-option:hover{background:#f0f5ef;border-color:#abbfac}
+.payment-method:has(input:checked){background:#e6f2e5;border-color:#2d6841}
+.payment-method input{accent-color:#2d6841;width:18px;height:18px;flex:none}
+.payment-method-panel{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}
+.payment-method-panel h3{font-size:1.14rem}
+.payment-method-panel p{font-size:.87rem;color:var(--muted)}
+@keyframes bag-feedback{0%,100%{transform:scale(1)}42%{transform:scale(1.075)}}
+@keyframes bag-enter{from{opacity:.78;transform:translateX(26px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bag-dim{from{opacity:0}to{opacity:1}}
+@keyframes payment-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:960px){.payment-methods{grid-template-columns:1fr}}
+@media(max-width:500px){.payment-options{padding:19px}.payment-preview-item dl{grid-template-columns:1fr;gap:1px}.payment-preview-item dd{margin:0 0 8px}.quick-bag-trigger strong{font-size:.77rem}}
+@media(prefers-reduced-motion:reduce){
+  .product-card,.product-media>span,.quick-add,.quick-bag-trigger,.nav-menu>a,.nav-menu>a::after,.quick-bag-close,.payment-method{transition:none!important}
+  .quick-bag-trigger.bag-pop,.quick-bag-panel:not([hidden]),.quick-bag-scrim:not([hidden]),.payment-options:not([hidden]){animation:none!important}
+  .product-card:hover,.product-card:focus-within,.quick-bag-trigger:hover{transform:none}
+}

@@ -6,7 +6,7 @@ function lines(){return Object.entries(getCart()).map(([id,qty])=>({p:byId[id],q
 function sum(){return lines().reduce((n,x)=>n+x.p.price*x.qty,0)}
 function countBadge(){const n=lines().reduce((s,x)=>s+x.qty,0);document.querySelectorAll("[data-cart-count]").forEach(e=>{e.textContent=String(n);e.setAttribute("aria-label",n+" items in bag")})}
 let timer;function notify(s){const el=document.getElementById("toast");if(!el)return;el.textContent=s;el.classList.add("show");clearTimeout(timer);timer=setTimeout(()=>el.classList.remove("show"),2400)}
-function add(id,q){if(!byId[id])return;const cart=getCart(),qty=Math.max(1,Math.min(10,parseInt(q,10)||1));cart[id]=Math.min(10,(cart[id]||0)+qty);setCart(cart);openQuickBag()}
+function add(id,q){if(!byId[id])return;const cart=getCart(),qty=Math.max(1,Math.min(10,parseInt(q,10)||1));cart[id]=Math.min(10,(cart[id]||0)+qty);setCart(cart);notify(byId[id].name+" added to your bag");const trigger=document.getElementById("quick-bag-trigger");if(trigger){trigger.classList.remove("bag-pop");void trigger.offsetWidth;trigger.classList.add("bag-pop")}}
 function change(id,delta){const cart=getCart();if(!cart[id])return;const next=cart[id]+delta;if(next<=0)delete cart[id];else cart[id]=Math.min(next,10);setCart(cart)}
 function remove(id){const cart=getCart();delete cart[id];setCart(cart);notify("Item removed")}
 
@@ -79,7 +79,7 @@ function renderCart(){const root=document.getElementById("cart-items");if(!root)
 if(!all.length){root.innerHTML='<div class="empty"><h2>Your bag is empty</h2><p>Explore the collection and add a sample product.</p><a href="shop.html" class="btn">Browse products →</a></div>';return}
 root.innerHTML=all.map(({p,qty})=>'<article class="cart-row"><div class="cart-mini" style="background:'+p.bg+'" aria-hidden="true">'+p.emoji+'</div><div class="cart-detail"><div><h2><a href="products/'+p.id+'.html">'+p.name+'</a></h2><p>'+p.category+' · Demonstration item</p><div class="qty-box" aria-label="Quantity of '+p.name+'"><button type="button" data-decrease="'+p.id+'" aria-label="Decrease quantity of '+p.name+'">−</button><span>'+qty+'</span><button type="button" data-increase="'+p.id+'" aria-label="Increase quantity of '+p.name+'">+</button></div><button type="button" class="remove" data-remove="'+p.id+'">Remove</button></div><strong class="cart-total">'+price(p.price*qty)+'</strong></div></article>').join("")}
 function renderCheckout(){const root=document.getElementById("checkout-items");if(!root)return;const all=lines();document.getElementById("checkout-total").textContent=price(sum());const btn=document.getElementById("show-payment-options");btn.disabled=!all.length;
-const paymentAmount=document.getElementById("payment-amount");if(paymentAmount)paymentAmount.textContent=price(sum());
+const paymentAmount=document.getElementById("payment-amount");if(paymentAmount)paymentAmount.textContent=price(sum());const transferAmount=document.getElementById("preview-transfer-amount");if(transferAmount)transferAmount.textContent=price(sum());
 if(!all.length){const options=document.getElementById("payment-options");if(options)options.hidden=true;if(btn)btn.setAttribute("aria-expanded","false")}if(!all.length){root.innerHTML='<div class="empty"><h2>Nothing to review yet</h2><p>Add something to your bag to try this demonstration.</p><a class="btn" href="shop.html">Browse products →</a></div>';return}root.innerHTML=all.map(({p,qty})=>'<div class="checkout-row"><div><strong>'+p.name+'</strong><span>Quantity: '+qty+'</span></div><strong>'+price(p.price*qty)+'</strong></div>').join("")}
 function initShop(){const grid=document.getElementById("catalog");if(!grid)return;const all=[...grid.querySelectorAll("[data-product-card]")],search=document.getElementById("search"),sort=document.getElementById("sort"),count=document.getElementById("result-count"),empty=document.getElementById("no-results");let category="All";const params=new URLSearchParams(location.search);if(params.has("q"))search.value=params.get("q").slice(0,60);if(["All","Decor","Desk","Kitchen","Textiles"].includes(params.get("category")))category=params.get("category");document.querySelectorAll("[data-filter]").forEach(b=>{const yes=b.dataset.filter===category;b.classList.toggle("selected",yes);b.setAttribute("aria-pressed",String(yes))});
 function apply(){const term=search.value.trim().toLowerCase();const found=all.filter(e=>(category==="All"||e.dataset.cat===category)&&e.dataset.name.includes(term));if(sort.value==="asc")found.sort((a,b)=>Number(a.dataset.price)-Number(b.dataset.price));else if(sort.value==="desc")found.sort((a,b)=>Number(b.dataset.price)-Number(a.dataset.price));else if(sort.value==="az")found.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));else found.sort((a,b)=>all.indexOf(a)-all.indexOf(b));for(const e of all)e.hidden=!found.includes(e);for(const e of found)grid.append(e);count.textContent="Showing "+found.length+" of "+all.length+" items";empty.hidden=!!found.length;const url=new URL(location.href);if(term)url.searchParams.set("q",term);else url.searchParams.delete("q");if(category!=="All")url.searchParams.set("category",category);else url.searchParams.delete("category");history.replaceState(null,"",url.pathname+url.search+url.hash)}
@@ -91,6 +91,27 @@ function initPaymentPreview(){
   const reveal=document.getElementById("show-payment-options");
   const panel=document.getElementById("payment-options");
   if(!reveal||!panel)return;
+  const methodPanels={
+    transfer:document.getElementById("transfer-preview"),
+    delivery:document.getElementById("delivery-preview"),
+    card:document.getElementById("card-preview")
+  };
+  const selectedMethod=document.getElementById("method-selection-note");
+  const bankNote=document.getElementById("bank-selection-note");
+  const finalLabel=document.getElementById("payment-action-label");
+  function displayMethod(method){
+    for(const [key,element] of Object.entries(methodPanels))if(element)element.hidden=key!==method;
+    if(bankNote)bankNote.hidden=true;
+    if(selectedMethod){
+      selectedMethod.hidden=false;
+      selectedMethod.textContent={
+        transfer:"Bank transfer selected for preview. The example account below is NOT a payable account.",
+        delivery:"Pay on delivery selected for preview. No delivery or order is arranged.",
+        card:"Card selected for preview. No card fields or processor are connected."
+      }[method]||"Select a method to continue the preview.";
+    }
+    if(finalLabel)finalLabel.textContent=method==="delivery"?"Place order": "Pay";
+  }
   reveal.addEventListener("click",()=>{
     if(!lines().length)return;
     panel.hidden=false;
@@ -98,10 +119,17 @@ function initPaymentPreview(){
     document.getElementById("payment-options-heading").focus();
   });
   panel.addEventListener("change",event=>{
+    if(event.target.matches('input[name="demo-method"]')){
+      displayMethod(event.target.value);
+      return;
+    }
     if(event.target.matches('input[name="demo-bank"]')){
-      const note=document.getElementById("bank-selection-note");
-      note.hidden=false;
-      note.textContent=event.target.value+" selected for this preview. No bank is connected and no payment can be made.";
+      if(bankNote){
+        bankNote.hidden=false;
+        bankNote.textContent=event.target.value+" selected. The account-number field is a non-payable placeholder; do not attempt a transfer.";
+      }
+      const bankTitle=document.getElementById("selected-bank-title");
+      if(bankTitle)bankTitle.textContent=event.target.value+" · DEMO ONLY";
     }
   });
 }

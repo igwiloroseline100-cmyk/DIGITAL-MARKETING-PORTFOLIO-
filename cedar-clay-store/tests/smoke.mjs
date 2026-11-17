@@ -12,9 +12,9 @@ const productFolder = path.join(root, "products");
 const productPages = fs.readdirSync(productFolder).filter(p => p.endsWith(".html")).map(p => "products/" + p);
 const allPages = [...pages, ...productPages];
 
-test("all six core pages and eight unique detail pages exist", () => {
+test("all six core pages and sixteen unique detail pages exist", () => {
   assert.equal(pages.length, 6);
-  assert.equal(productPages.length, 8);
+  assert.equal(productPages.length, 16);
   for (const page of allPages) assert.ok(fs.existsSync(path.join(root, page)), page);
 });
 
@@ -48,9 +48,9 @@ test("product data matches dedicated detail pages and uses positive NGN numbers"
   const context = { window: {} };
   vm.runInNewContext(read("assets/catalog.js"), context);
   const records = context.window.CC_CATALOG;
-  assert.equal(records.length, 8);
+  assert.equal(records.length, 16);
   assert.equal(new Set(Array.from(records, p => p.id)).size, 8);
-  assert.equal(Array.from(records, p => p.category).filter(c => c === "Desk").length, 3);
+  assert.equal(Array.from(records, p => p.category).filter(c => c === "Desk").length, 5);
   for (const item of records) {
     assert.ok(Number.isInteger(item.price) && item.price > 0);
     const html = read("products/" + item.id + ".html");

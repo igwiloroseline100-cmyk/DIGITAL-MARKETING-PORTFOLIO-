@@ -37,9 +37,10 @@ function boot({pathname="/cedar-clay-store/shop.html",checkout=false}={}){
     if(scrim)scrim.hidden=true;
   };
   if(checkout){
-    for(const id of ["checkout-items","checkout-total","show-payment-options","payment-options","payment-options-heading","payment-amount","bank-selection-note"])register(id);
+    for(const id of ["checkout-items","checkout-total","show-payment-options","payment-options","payment-options-heading","payment-amount","bank-selection-note","method-selection-note","transfer-preview","delivery-preview","card-preview","payment-action-label","selected-bank-title","preview-transfer-amount"])register(id);
     get("payment-options").hidden=true;
     get("bank-selection-note").hidden=true;
+    for(const id of ["transfer-preview","delivery-preview","card-preview","method-selection-note"])get(id).hidden=true;
   }
   document={
     body,activeElement:null,
@@ -74,7 +75,7 @@ test("floating bag counts products, calculates subtotals, updates quantities and
   app.documentClick("add","everyday-mug");
   assert.equal(app.get("quick-bag-button-total").textContent,"₦9,500");
   assert.equal(app.headerCount.textContent,"1");
-  assert.equal(app.get("quick-bag-panel").hidden,false);
+  assert.equal(app.get("quick-bag-panel").hidden,true); // Add does not interrupt shopping
   assert.match(app.get("quick-bag-items").innerHTML,/Everyday Stoneware Mug/);
   app.documentClick("add","everyday-mug");
   assert.equal(app.get("quick-bag-subtotal").textContent,"₦19,000");
@@ -91,6 +92,7 @@ test("floating bag counts products, calculates subtotals, updates quantities and
 test("bag can be opened and closed from a product detail page using correct relative links",()=>{
   const app=boot({pathname:"/cedar-clay-store/products/everyday-mug.html"});
   app.documentClick("add","orbit-vase");
+  app.fire("quick-bag-trigger","click");
   assert.match(app.get("quick-bag-items").innerHTML,/href="\.\.\/products\/orbit-vase\.html"/);
   assert.match(app.get("quick-bag-widget").innerHTML,/href="\.\.\/checkout\.html"/);
   app.fire("quick-bag-close","click");
@@ -109,8 +111,26 @@ test("payment options are a preview, do not clear the bag, and require a selecti
   assert.equal(app.get("checkout-total").textContent,"₦9,500");
   app.fire("show-payment-options","click");
   assert.equal(app.get("payment-options").hidden,false);
+  app.fire("payment-options","change",{target:{matches:query=>query==='input[name="demo-method"]',value:"transfer"}});
+  assert.equal(app.get("transfer-preview").hidden,false);
   app.fire("payment-options","change",{target:{matches:query=>query==='input[name="demo-bank"]',value:"Access Bank"}});
   assert.match(app.get("bank-selection-note").textContent,/Access Bank selected/);
   assert.equal(app.get("quick-bag-subtotal").textContent,"₦9,500");
+  assert.equal(app.storage.get("cedar-clay-cart-v1"),'{"everyday-mug":1}');
+});
+
+test("changing payment method never enables payment and preserves demo amount",()=>{
+  const app=boot({pathname:"/cedar-clay-store/checkout.html",checkout:true});
+  app.documentClick("add","everyday-mug");
+  app.fire("show-payment-options","click");
+  app.fire("payment-options","change",{target:{matches:query=>query==='input[name="demo-method"]',value:"delivery"}});
+  assert.equal(app.get("delivery-preview").hidden,false);
+  assert.equal(app.get("transfer-preview").hidden,true);
+  assert.equal(app.get("payment-action-label").textContent,"Place order");
+  app.fire("payment-options","change",{target:{matches:query=>query==='input[name="demo-method"]',value:"card"}});
+  assert.equal(app.get("card-preview").hidden,false);
+  assert.equal(app.get("delivery-preview").hidden,true);
+  assert.equal(app.get("payment-action-label").textContent,"Pay");
+  assert.equal(app.get("payment-amount").textContent,"₦9,500");
   assert.equal(app.storage.get("cedar-clay-cart-v1"),'{"everyday-mug":1}');
 });

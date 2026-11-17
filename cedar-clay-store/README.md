@@ -4,14 +4,14 @@
 
 ## What is implemented
 
-- Multi-page HTML: Home, Shop, Cart, Demo Checkout, About, Contact, plus 8 separate product detail pages
+- Multi-page HTML: Home, Shop, Cart, Demo Checkout, About, Contact, plus 16 separate product detail pages
 - Semantic navigation, accessible labels, responsive layouts and mobile menu
 - Static product catalogue with browser-side search, category filters and sort controls
 - Add-to-cart from shop cards and product pages
 - Quantity changes, item removal and recalculated totals
 - Browser-local cart persistence using localStorage (with an in-memory fallback)
-- Floating quick-bag button available on every page, including mobile; opens an accessible side drawer with quantity, removal and running subtotal
-- Checkout review displays example Nigerian bank options, but the final payment button is disabled and the cart stays unchanged
+- Floating quick-bag button available on every page, including mobile; opens an accessible side drawer on request with quantity, removal and running subtotal. Adding an item no longer interrupts browsing
+- Checkout review offers bank transfer, pay on delivery and card payment previews. Sample bank choices and a clearly non-payable account-number placeholder are shown; the final button remains disabled
 - Contact form with browser validation; no message transmission or storage
 - Descriptive page titles, meta descriptions, relative internal links and canonical URLs
 
@@ -21,9 +21,9 @@
 
 - `index.html` — shop homepage
 - `shop.html` — product catalogue, search, categories and sorting
-- `products/*.html` — 8 individual product detail pages
+- `products/*.html` — 16 individual product detail pages
 - `cart.html` — persistent demo cart
-- `checkout.html` — payment-method preview with banks but no payment connection
+- `checkout.html` — payment-method previews for bank transfer, pay on delivery, card; no payment connection
 - `about.html` — brand story / project transparency
 - `contact.html` — locally validated demonstration form
 - `assets/styles.css` — shared design system and responsive rules
@@ -50,14 +50,14 @@ node --test tests/smoke.mjs
 ## Manual acceptance test
 
 1. Open Shop. Search for `mug` → exactly one card should remain.
-2. Clear search. Filter `Desk` → three cards should remain.
+2. Clear search. Filter `Desk` → five cards should remain.
 3. Sort by price low to high. Check the prices ascend.
-4. Open a product detail page. Change quantity to 2 and add to bag.
+4. Open a product detail page. Change quantity to 2 and add to bag; the cart should update without opening automatically.
 5. Reload the page in the same browser. Bag count should remain 2.
 6. In Bag, increase the mug quantity to 3. Subtotal should be ₦28,500 if only the mug is present.
-7. Use the floating bag button from any page; check its count, subtotal, increment/decrement and remove buttons.
-8. Open checkout and select **View payment options**. Verify the bank list is shown and the **Pay** button cannot be clicked.
-9. Check that previewing banks does not change the cart and no banking information is requested.
+7. Use the floating bag button from any page to open it manually; check its count, subtotal, increment/decrement and remove buttons.
+8. Open checkout and select **View payment options**, choose Bank transfer, pick a sample bank and inspect the **non-payable** account placeholder. Confirm the final Pay button cannot be clicked.
+9. Change to Pay on delivery and then Card. Each shows a distinct preview, but no payment or delivery proceeds, and the cart stays unchanged.
 10. On mobile width, open and close the menu and floating bag.
 11. On Contact, try an invalid email and a too-short message to check validation.
 12. Repeat in private browsing. Cart storage should be separate.
