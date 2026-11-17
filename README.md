@@ -10,6 +10,7 @@ Live site: https://igwiloroseline100-cmyk.github.io/DIGITAL-MARKETING-PORTFOLIO-
 
 ## Portfolio navigation
 - `index.html` — portfolio homepage
+- `cedar-clay-store/` — 14-page fictional e-commerce demo with browser cart and simulated checkout
 - `coding.html` — Web Development
 - `technical-seo.html` and `audit-lab.html` — Technical SEO investigations
 - `on-page-seo.html` — On-Page SEO
