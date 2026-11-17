@@ -18,4 +18,4 @@ jobs:
         with:
           node-version: "22"
       - name: Verify store files and JavaScript
-        run: node --test cedar-clay-store/tests/smoke.mjs
+        run: node --test cedar-clay-store/tests/*.mjs
