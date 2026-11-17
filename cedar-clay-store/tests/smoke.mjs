@@ -25,7 +25,7 @@ test("every HTML page has an identifiable title, description and conservative in
     assert.match(html, /<title>[^<]+<\/title>/, page + " title");
     assert.match(html, /<meta name="description" content="[^"]+"/, page + " description");
     assert.match(html, /<meta name="robots" content="noindex,follow"/, page + " noindex");
-    assert.match(html, /<main id="main">/, page + " main content");
+    assert.match(html, /<main id="main"(?:\s[^>]*)?>/, page + " main content");
     assert.match(html, /<link rel="canonical" href="https:\/\//, page + " canonical");
   }
 });
