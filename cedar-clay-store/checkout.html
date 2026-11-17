@@ -28,6 +28,20 @@
 <div id="delivery-preview" class="payment-method-panel" hidden><h3>Pay on delivery preview</h3><p>This is how a cash-on-delivery option could be selected. No address is collected, no delivery is scheduled, and no order is submitted.</p></div>
 <div id="card-preview" class="payment-method-panel" hidden><h3>Card payment preview</h3><p>A real store would use a securely integrated payment provider. No card-number, expiry or security-code fields are displayed here.</p></div>
 <button type="button" class="btn wide" disabled aria-disabled="true"><span id="payment-action-label">Pay</span> <span id="payment-amount">₦0</span> · Disabled</button>
-<p class="payment-safety">This final action is intentionally disabled for every payment method. Your bag remains unchanged.</p></section></div><aside class="summary"><p class="kicker">ORDER OVERVIEW</p><h2>Demo total</h2><div class="summary-row total"><span>Subtotal</span><strong id="checkout-total">₦0</strong></div><p>All prices illustrative. Only a payment-options preview is available; there is no live checkout.</p><button class="btn wide" type="button" id="show-payment-options" aria-controls="payment-options" aria-expanded="false">View payment options →</button><a class="back" href="cart.html">← Back to bag</a></aside></div></section></main>
+<p class="payment-safety">This final action is intentionally disabled for every payment method. Your bag remains unchanged.</p></section></div><aside class="summary"><p class="kicker">ORDER OVERVIEW</p><h2>Demo total</h2><div class="summary-row total"><span>Subtotal</span><strong id="checkout-total">₦0</strong></div><p>All prices illustrative. Only a payment-options preview is available; there is no live checkout.</p><button class="btn wide" type="button" id="show-payment-options" aria-controls="payment-options" aria-expanded="false">View payment options →</button><a class="back" href="cart.html">← Back to bag</a></aside></div></section>
+<section class="section soft order-journey" aria-labelledby="order-journey-title">
+  <div class="container">
+    <p class="kicker">PLANNED CUSTOMER EXPERIENCE · NOT ACTIVE</p>
+    <h2 id="order-journey-title">What happens after checkout?</h2>
+    <p class="journey-intro">In a future live store, customers will receive order updates after payment is independently verified. This demo does not create orders or send notifications.</p>
+    <ol class="journey-list">
+      <li><span class="journey-number" aria-hidden="true">01</span><div><h3>Order received</h3><p>An actual backend would create an order reference and record the requested items.</p></div></li>
+      <li><span class="journey-number" aria-hidden="true">02</span><div><h3>Payment verified</h3><p>A connected payment provider would confirm a successful transaction; pay-on-delivery orders would remain unpaid until payment is collected.</p></div></li>
+      <li><span class="journey-number" aria-hidden="true">03</span><div><h3>Availability reviewed</h3><p>The business would confirm stock and prepare the order before scheduling shipping.</p></div></li>
+      <li><span class="journey-number" aria-hidden="true">04</span><div><h3>Shipping date confirmed</h3><p>The customer would be notified once a realistic shipping date is available. No date is promised in advance.</p></div></li>
+    </ol>
+    <p class="journey-footnote">Current status: <strong>Prototype only — no orders accepted, no payment verification and no shipping emails sent.</strong></p>
+  </div>
+</section></main>
 <footer class="footer"><div class="container footer-cols"><div><a href="index.html" class="logo">CEDAR <span>&amp;</span> CLAY</a><p>Carefully considered objects. A fictional portfolio store, not a real merchant.</p></div><div><h2>Explore</h2><a href="shop.html">Shop catalogue</a><a href="about.html">Our story</a><a href="contact.html">Contact demo</a></div><div><h2>Transparency</h2><p>All products, prices and availability are illustrative. This site accepts no real orders or payments.</p></div></div><div class="container footer-bottom">© 2026 Cedar &amp; Clay · Demonstration only</div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div><script defer src="assets/catalog.js"></script><script defer src="assets/main.js"></script></body></html>

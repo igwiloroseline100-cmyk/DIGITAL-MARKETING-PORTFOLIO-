@@ -13,7 +13,7 @@
 - Quantity changes, item removal and recalculated totals
 - Browser-local cart persistence using localStorage (with an in-memory fallback)
 - Floating quick-bag button available on every page, including mobile; opens an accessible side drawer on request with quantity, removal and running subtotal. Adding an item no longer interrupts browsing
-- Checkout review offers bank transfer, pay on delivery and card payment previews. Sample bank choices and a clearly non-payable account-number placeholder are shown; the final button remains disabled
+- Checkout review offers bank transfer, pay on delivery and card payment previews. Sample bank choices and a clearly non-payable account-number placeholder are shown; the final button remains disabled. A clearly labelled, nonfunctional order-status and shipping-notification journey shows what a live backend would eventually support
 - Contact form with browser validation; no message transmission or storage
 - Descriptive page titles, meta descriptions, relative internal links and canonical URLs
 

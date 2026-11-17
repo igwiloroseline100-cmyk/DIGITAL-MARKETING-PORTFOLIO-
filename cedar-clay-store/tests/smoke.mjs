@@ -128,3 +128,16 @@ test("direct quantity fields allow 1 to 999 on every product details page",()=>{
   for (const page of productPages) assert.match(read(page), /max="999"/, page + " must accept bulk quantities");
   assert.match(read("product-preview.html"), /max="999"/);
 });
+
+
+test("planned shipping journey is disclosed without pretending orders are active", () => {
+  const html=read("checkout.html");
+  assert.match(html, /id="order-journey-title"/);
+  assert.match(html, /Payment verified/);
+  assert.match(html, /Shipping date confirmed/);
+  assert.match(html, /No date is promised in advance/);
+  assert.match(html, /Prototype only — no orders accepted/);
+  assert.match(html, /payment verification and no shipping emails sent/);
+  assert.match(html, /<button type="button" class="btn wide" disabled aria-disabled="true">/);
+  assert.doesNotMatch(html, /your order (?:has been |was )?(?:placed|confirmed|shipped)/i);
+});

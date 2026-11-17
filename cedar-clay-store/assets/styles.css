@@ -166,3 +166,14 @@ body.quick-bag-open{overflow:hidden}
 .qty-box button{min-width:35px;min-height:37px}
 .qty-box button:disabled{opacity:.35;cursor:not-allowed}
 .detail-actions input[type=number]{min-height:44px;width:100px}
+
+
+/* Planned post-checkout order lifecycle preview — descriptive, not transactional. */
+.order-journey .journey-intro{max-width:750px;color:var(--muted);margin-bottom:28px}
+.journey-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.journey-list li{display:flex;align-items:flex-start;gap:16px;padding:22px;border:1px solid #dce4d9;border-radius:12px;background:#fff}
+.journey-number{width:39px;height:39px;flex:none;display:grid;place-items:center;background:#e8efe5;color:var(--dark);border-radius:50%;font-size:.75rem;font-weight:850}
+.journey-list h3{font-size:1.08rem;margin:3px 0 8px}
+.journey-list p{color:var(--muted);font-size:.85rem;line-height:1.6;margin:0}
+.journey-footnote{margin-top:28px;font-size:.83rem;color:#6e6b61}
+@media(max-width:680px){.journey-list{grid-template-columns:1fr}.journey-list li{padding:17px}}
