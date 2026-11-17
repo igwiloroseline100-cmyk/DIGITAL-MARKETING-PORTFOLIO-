@@ -145,6 +145,7 @@ test("locally added sample product merges into catalog and is usable in bag",()=
  app.documentClick("add","demo-test-123456");
  assert.equal(app.get("quick-bag-subtotal").textContent,"₦12,300");
  assert.match(app.get("quick-bag-items").innerHTML,/Home Organizer/);
+ assert.match(app.get("quick-bag-items").innerHTML,/href="product-preview\.html\?id=demo-test-123456"/);
  assert.equal(app.get("quick-bag-panel").hidden,true);
 });
 test("unsafe local product data is not trusted as a catalog record",()=>{
