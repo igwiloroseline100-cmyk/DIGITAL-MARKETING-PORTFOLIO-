@@ -1,4 +1,4 @@
-# Roseline Igwilo — Portfolio
+# Roseline Igwilo — Web Developer | SEO & AI Automation
 
 Live site: https://igwiloroseline100-cmyk.github.io/DIGITAL-MARKETING-PORTFOLIO-/
 
