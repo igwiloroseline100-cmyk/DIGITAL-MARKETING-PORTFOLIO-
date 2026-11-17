@@ -72,18 +72,106 @@ function renderQuickBag(){
     mount.innerHTML='<div class="quick-bag-empty"><p>Your bag is empty.</p><a class="plain-link" href="'+prefix+'shop.html">Explore products →</a></div>';
     return;
   }
-  mount.innerHTML=all.map(({p,qty})=>'<article class="quick-bag-item"><div class="quick-bag-icon" aria-hidden="true" style="background:'+p.bg+'">'+p.emoji+'</div><div class="quick-bag-item-details"><a href="'+prefix+'products/'+p.id+'.html" class="quick-bag-name">'+p.name+'</a><span class="quick-bag-category">'+p.category+'</span><strong class="quick-bag-price">'+price(qty*p.price)+'</strong><div class="quick-bag-actions"><div class="qty-box" aria-label="Quantity of '+p.name+'"><button type="button" data-decrease="'+p.id+'" aria-label="Decrease '+p.name+' quantity">−</button><span>'+qty+'</span><button type="button" data-increase="'+p.id+'" aria-label="Increase '+p.name+' quantity" '+(qty===10?"disabled":"")+'>+</button></div><button type="button" class="remove" data-remove="'+p.id+'">Remove</button></div></div></article>').join("");
+  mount.innerHTML=all.map(({p,qty})=>'<article class="quick-bag-item"><div class="quick-bag-icon" aria-hidden="true" style="background:'+p.bg+'">'+p.emoji+'</div><div class="quick-bag-item-details"><a href="'+prefix+'products/'+p.id+'.html" class="quick-bag-name">'+esc(p.name)+'</a><span class="quick-bag-category">'+esc(p.category)+'</span><strong class="quick-bag-price">'+price(qty*p.price)+'</strong><div class="quick-bag-actions"><div class="qty-box" aria-label="Quantity of '+esc(p.name)+'"><button type="button" data-decrease="'+p.id+'" aria-label="Decrease '+esc(p.name)+' quantity">−</button><span>'+qty+'</span><button type="button" data-increase="'+p.id+'" aria-label="Increase '+esc(p.name)+' quantity" '+(qty===10?"disabled":"")+'>+</button></div><button type="button" class="remove" data-remove="'+p.id+'">Remove</button></div></div></article>').join("");
 }
 
 function renderCart(){const root=document.getElementById("cart-items");if(!root)return;const all=lines();document.getElementById("cart-total").textContent=price(sum());document.getElementById("cart-qty").textContent=String(all.reduce((n,x)=>n+x.qty,0));const checkout=document.getElementById("checkout-link");checkout.setAttribute("aria-disabled",String(!all.length));checkout.tabIndex=all.length?0:-1;
 if(!all.length){root.innerHTML='<div class="empty"><h2>Your bag is empty</h2><p>Explore the collection and add a sample product.</p><a href="shop.html" class="btn">Browse products →</a></div>';return}
-root.innerHTML=all.map(({p,qty})=>'<article class="cart-row"><div class="cart-mini" style="background:'+p.bg+'" aria-hidden="true">'+p.emoji+'</div><div class="cart-detail"><div><h2><a href="products/'+p.id+'.html">'+p.name+'</a></h2><p>'+p.category+' · Demonstration item</p><div class="qty-box" aria-label="Quantity of '+p.name+'"><button type="button" data-decrease="'+p.id+'" aria-label="Decrease quantity of '+p.name+'">−</button><span>'+qty+'</span><button type="button" data-increase="'+p.id+'" aria-label="Increase quantity of '+p.name+'">+</button></div><button type="button" class="remove" data-remove="'+p.id+'">Remove</button></div><strong class="cart-total">'+price(p.price*qty)+'</strong></div></article>').join("")}
+root.innerHTML=all.map(({p,qty})=>'<article class="cart-row"><div class="cart-mini" style="background:'+p.bg+'" aria-hidden="true">'+p.emoji+'</div><div class="cart-detail"><div><h2><a href="products/'+p.id+'.html">'+esc(p.name)+'</a></h2><p>'+esc(p.category)+' · Demonstration item</p><div class="qty-box" aria-label="Quantity of '+esc(p.name)+'"><button type="button" data-decrease="'+p.id+'" aria-label="Decrease quantity of '+esc(p.name)+'">−</button><span>'+qty+'</span><button type="button" data-increase="'+p.id+'" aria-label="Increase quantity of '+esc(p.name)+'">+</button></div><button type="button" class="remove" data-remove="'+p.id+'">Remove</button></div><strong class="cart-total">'+price(p.price*qty)+'</strong></div></article>').join("")}
 function renderCheckout(){const root=document.getElementById("checkout-items");if(!root)return;const all=lines();document.getElementById("checkout-total").textContent=price(sum());const btn=document.getElementById("show-payment-options");btn.disabled=!all.length;
 const paymentAmount=document.getElementById("payment-amount");if(paymentAmount)paymentAmount.textContent=price(sum());const transferAmount=document.getElementById("preview-transfer-amount");if(transferAmount)transferAmount.textContent=price(sum());
-if(!all.length){const options=document.getElementById("payment-options");if(options)options.hidden=true;if(btn)btn.setAttribute("aria-expanded","false")}if(!all.length){root.innerHTML='<div class="empty"><h2>Nothing to review yet</h2><p>Add something to your bag to try this demonstration.</p><a class="btn" href="shop.html">Browse products →</a></div>';return}root.innerHTML=all.map(({p,qty})=>'<div class="checkout-row"><div><strong>'+p.name+'</strong><span>Quantity: '+qty+'</span></div><strong>'+price(p.price*qty)+'</strong></div>').join("")}
-function initShop(){const grid=document.getElementById("catalog");if(!grid)return;const all=[...grid.querySelectorAll("[data-product-card]")],search=document.getElementById("search"),sort=document.getElementById("sort"),count=document.getElementById("result-count"),empty=document.getElementById("no-results");let category="All";const params=new URLSearchParams(location.search);if(params.has("q"))search.value=params.get("q").slice(0,60);if(["All","Decor","Desk","Kitchen","Textiles"].includes(params.get("category")))category=params.get("category");document.querySelectorAll("[data-filter]").forEach(b=>{const yes=b.dataset.filter===category;b.classList.toggle("selected",yes);b.setAttribute("aria-pressed",String(yes))});
-function apply(){const term=search.value.trim().toLowerCase();const found=all.filter(e=>(category==="All"||e.dataset.cat===category)&&e.dataset.name.includes(term));if(sort.value==="asc")found.sort((a,b)=>Number(a.dataset.price)-Number(b.dataset.price));else if(sort.value==="desc")found.sort((a,b)=>Number(b.dataset.price)-Number(a.dataset.price));else if(sort.value==="az")found.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));else found.sort((a,b)=>all.indexOf(a)-all.indexOf(b));for(const e of all)e.hidden=!found.includes(e);for(const e of found)grid.append(e);count.textContent="Showing "+found.length+" of "+all.length+" items";empty.hidden=!!found.length;const url=new URL(location.href);if(term)url.searchParams.set("q",term);else url.searchParams.delete("q");if(category!=="All")url.searchParams.set("category",category);else url.searchParams.delete("category");history.replaceState(null,"",url.pathname+url.search+url.hash)}
-search.addEventListener("input",apply);sort.addEventListener("change",apply);document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{category=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(x=>{const yes=x===b;x.classList.toggle("selected",yes);x.setAttribute("aria-pressed",String(yes))});apply()}));document.getElementById("reset-filters").addEventListener("click",()=>{search.value="";sort.value="featured";document.querySelector('[data-filter="All"]').click();search.focus()});apply()}
+if(!all.length){const options=document.getElementById("payment-options");if(options)options.hidden=true;if(btn)btn.setAttribute("aria-expanded","false")}if(!all.length){root.innerHTML='<div class="empty"><h2>Nothing to review yet</h2><p>Add something to your bag to try this demonstration.</p><a class="btn" href="shop.html">Browse products →</a></div>';return}root.innerHTML=all.map(({p,qty})=>'<div class="checkout-row"><div><strong>'+esc(p.name)+'</strong><span>Quantity: '+qty+'</span></div><strong>'+price(p.price*qty)+'</strong></div>').join("")}
+
+function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function productLink(p){return window.CC_BASE_CATALOG?.slice(0,16).some(item=>item.id===p.id)?"products/"+encodeURIComponent(p.id)+".html":"product-preview.html?id="+encodeURIComponent(p.id)}
+function productCard(p){
+ const image=p.imageData?'<img loading="lazy" width="320" height="320" src="'+p.imageData+'" alt="'+esc(p.name)+'">':'<span role="img" aria-label="'+esc(p.name)+' illustration">'+esc(p.emoji||"📦")+'</span>';
+ return '<article class="product-card" data-product-card data-cat="'+esc(p.category)+'" data-name="'+esc(p.name.toLowerCase())+'" data-price="'+p.price+'">'+
+ '<a class="product-link" href="'+productLink(p)+'"><div class="product-media" style="--tile:'+p.bg+'">'+image+'</div>'+
+ '<span class="product-meta">'+esc(p.category)+' <b>'+price(p.price)+'</b></span><h3>'+esc(p.name)+'</h3></a>'+
+ '<button class="quick-add" type="button" data-add="'+p.id+'" aria-label="Add '+esc(p.name)+' to bag">Add to bag <span aria-hidden="true">+</span></button></article>'
+}
+function initCatalogViews(){
+ const grid=document.getElementById("catalog");
+ if(grid)grid.innerHTML=products.map(productCard).join("");
+ const rail=document.getElementById("featured-rail");
+ if(rail){
+   rail.innerHTML=products.map(productCard).join("");
+   document.querySelectorAll("[data-rail-move]").forEach(btn=>btn.addEventListener("click",()=>{
+      rail.scrollBy({left:(Number(btn.dataset.railMove)||1)*Math.max(280,rail.clientWidth*.85),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+   }));
+ }
+ const productView=document.getElementById("dynamic-detail");
+ if(productView){
+   const id=new URLSearchParams(location.search).get("id");
+   const item=byId[id];
+   const headline=document.getElementById("detail-name");
+   if(!item){
+     headline.textContent="Product not found";
+     document.getElementById("dynamic-detail-info").hidden=true;
+     document.getElementById("missing-product").hidden=false;
+     return;
+   }
+   headline.textContent=item.name;
+   document.getElementById("detail-category").textContent=item.category+" · DEMO PRODUCT";
+   document.getElementById("detail-price").textContent=price(item.price);
+   document.getElementById("detail-description").textContent=item.description||"A sample home-and-lifestyle product.";
+   document.getElementById("detail-add").dataset.add=item.id;
+   const visual=document.getElementById("detail-visual");
+   visual.style.setProperty("--tile",item.bg);
+   if(item.imageData){
+     const pic=document.createElement("img");
+     pic.src=item.imageData;pic.alt=item.name;pic.className="uploaded-detail";pic.width=600;pic.height=600;visual.append(pic);
+   } else {
+     const span=document.createElement("span");span.textContent=item.emoji||"📦";span.setAttribute("role","img");span.setAttribute("aria-label",item.name+" illustration");visual.append(span);
+   }
+   document.title=item.name+" | Cedar & Clay (demo)";
+ }
+}
+function initShop(){const grid=document.getElementById("catalog");if(!grid)return;
+ const all=[...grid.querySelectorAll("[data-product-card]")],search=document.getElementById("search"),sort=document.getElementById("sort"),
+ count=document.getElementById("result-count"),empty=document.getElementById("no-results"),more=document.getElementById("show-more");
+ let category="All",limit=12;
+ const params=new URLSearchParams(location.search);
+ if(params.has("q"))search.value=params.get("q").slice(0,60);
+ if(["All","Decor","Desk","Kitchen","Textiles"].includes(params.get("category")))category=params.get("category");
+ document.querySelectorAll("[data-filter]").forEach(b=>{const yes=b.dataset.filter===category;b.classList.toggle("selected",yes);b.setAttribute("aria-pressed",String(yes))});
+ function apply(reset=false){
+   if(reset)limit=12;
+   const term=search.value.trim().toLowerCase();
+   const filtered=all.filter(card=>(category==="All"||card.dataset.cat===category)&&card.dataset.name.includes(term));
+   if(sort.value==="asc")filtered.sort((a,b)=>Number(a.dataset.price)-Number(b.dataset.price));
+   else if(sort.value==="desc")filtered.sort((a,b)=>Number(b.dataset.price)-Number(a.dataset.price));
+   else if(sort.value==="az")filtered.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));
+   else filtered.sort((a,b)=>all.indexOf(a)-all.indexOf(b));
+   for(const card of all)card.hidden=true;
+   for(const [i,card] of filtered.entries()){grid.append(card);card.hidden=i>=limit}
+   count.textContent="Showing "+Math.min(limit,filtered.length)+" of "+filtered.length+" matching items · "+all.length+" in the collection";
+   empty.hidden=filtered.length>0;
+   if(more){more.hidden=filtered.length<=limit;more.textContent="Show more products ("+Math.max(0,filtered.length-limit)+" remaining)";}
+   const url=new URL(location.href);
+   if(term)url.searchParams.set("q",term);else url.searchParams.delete("q");
+   if(category!=="All")url.searchParams.set("category",category);else url.searchParams.delete("category");
+   history.replaceState(null,"",url.pathname+url.search+url.hash);
+ }
+ search.addEventListener("input",()=>apply(true));sort.addEventListener("change",()=>apply(true));
+ document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{
+   category=b.dataset.filter;
+   document.querySelectorAll("[data-filter]").forEach(x=>{const yes=x===b;x.classList.toggle("selected",yes);x.setAttribute("aria-pressed",String(yes))});
+   apply(true);
+ }));
+ document.getElementById("reset-filters").addEventListener("click",()=>{search.value="";sort.value="featured";document.querySelector('[data-filter="All"]').click();search.focus()});
+ if(more){
+   more.addEventListener("click",()=>{limit+=8;apply()});
+   if(typeof IntersectionObserver!=="undefined"){
+     const observer=new IntersectionObserver(entries=>{
+       if(entries.some(entry=>entry.isIntersecting)&&!more.hidden){limit+=8;apply()}
+     },{rootMargin:"0px 0px 200px 0px"});
+     observer.observe(more);
+   }
+ }
+ apply();
+}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(b){const f=document.getElementById("detail-qty");if(f&&!f.reportValidity())return;add(b.dataset.add,f?f.value:1);return}const inc=e.target.closest("[data-increase]");if(inc){change(inc.dataset.increase,1);return}const dec=e.target.closest("[data-decrease]");if(dec){change(dec.dataset.decrease,-1);return}const rem=e.target.closest("[data-remove]");if(rem){remove(rem.dataset.remove);return}const chk=e.target.closest("#checkout-link, #quick-bag-checkout");if(chk&&chk.getAttribute("aria-disabled")==="true")e.preventDefault()});
 const menu=document.querySelector(".nav-toggle"),nav=document.getElementById("nav-menu");if(menu&&nav){menu.addEventListener("click",()=>{const open=menu.getAttribute("aria-expanded")!=="true";menu.setAttribute("aria-expanded",String(open));nav.classList.toggle("open",open)});document.addEventListener("keydown",e=>{if(e.key==="Escape"){menu.setAttribute("aria-expanded","false");nav.classList.remove("open")}})}
 
@@ -135,5 +223,5 @@ function initPaymentPreview(){
 }
 
 document.getElementById("contact-demo")?.addEventListener("submit",e=>{e.preventDefault();if(!e.currentTarget.reportValidity())return;const msg=document.getElementById("contact-feedback");msg.textContent="Validation passed. This was a local demo; your message was not sent or stored.";msg.hidden=false;e.currentTarget.reset()});
-initQuickBag();initShop();initPaymentPreview();countBadge();renderCart();renderCheckout();window.addEventListener("storage",()=>{countBadge();renderQuickBag();renderCart();renderCheckout()});
+initCatalogViews();initQuickBag();initShop();initPaymentPreview();countBadge();renderCart();renderCheckout();window.addEventListener("storage",()=>{countBadge();renderQuickBag();renderCart();renderCheckout()});
 })();

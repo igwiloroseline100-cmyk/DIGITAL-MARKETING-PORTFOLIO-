@@ -7,13 +7,13 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
-const pages = ["index.html", "shop.html", "cart.html", "checkout.html", "about.html", "contact.html"];
+const pages = ["index.html", "shop.html", "cart.html", "checkout.html", "about.html", "contact.html", "catalog-studio.html", "product-preview.html"];
 const productFolder = path.join(root, "products");
 const productPages = fs.readdirSync(productFolder).filter(p => p.endsWith(".html")).map(p => "products/" + p);
 const allPages = [...pages, ...productPages];
 
-test("all six core pages and sixteen unique detail pages exist", () => {
-  assert.equal(pages.length, 6);
+test("all eight main pages and sixteen static detail pages exist", () => {
+  assert.equal(pages.length, 8);
   assert.equal(productPages.length, 16);
   for (const page of allPages) assert.ok(fs.existsSync(path.join(root, page)), page);
 });
@@ -48,20 +48,25 @@ test("product data matches dedicated detail pages and uses positive NGN numbers"
   const context = { window: {} };
   vm.runInNewContext(read("assets/catalog.js"), context);
   const records = context.window.CC_CATALOG;
-  assert.equal(records.length, 16);
-  assert.equal(new Set(Array.from(records, p => p.id)).size, 16);
-  assert.equal(Array.from(records, p => p.category).filter(c => c === "Desk").length, 5);
+  assert.equal(records.length, 28);
+  assert.equal(new Set(Array.from(records, p => p.id)).size, 28);
+  assert.equal(Array.from(records, p => p.category).filter(c => c === "Desk").length, 7);
   for (const item of records) {
     assert.ok(Number.isInteger(item.price) && item.price > 0);
-    const html = read("products/" + item.id + ".html");
-    assert.ok(html.includes(item.name), item.id + " title in HTML");
-    assert.ok(html.includes('data-add="' + item.id + '"'), item.id + " cart action");
+    if (fs.existsSync(path.join(root, "products", item.id + ".html"))) {
+      const html = read("products/" + item.id + ".html");
+      assert.ok(html.includes(item.name), item.id + " title in static HTML");
+      assert.ok(html.includes('data-add="' + item.id + '"'), item.id + " static cart action");
+    } else {
+      assert.ok(fs.existsSync(path.join(root, "product-preview.html")), "missing dynamic product route");
+    }
   }
 });
 
 test("shared JavaScript parses without syntax errors", () => {
   assert.doesNotThrow(() => new vm.Script(read("assets/catalog.js")));
   assert.doesNotThrow(() => new vm.Script(read("assets/main.js")));
+  assert.doesNotThrow(() => new vm.Script(read("assets/studio.js")));
 });
 
 test("sensitive demo features have honest disclosures", () => {
@@ -95,4 +100,23 @@ test("payment step lists example banks and explicitly cannot transfer funds", ()
   assert.match(html, /<button[^>]+disabled aria-disabled="true"/);
   assert.doesNotMatch(html, /demo-confirm|Complete demo checkout/);
   assert.doesNotMatch(read("assets/main.js"), /id="demo-confirm"|getElementById\("demo-confirm"\)/);
+});
+
+
+test("scrollable browse and owner-side local editor have explicit boundaries", () => {
+ const home=read("index.html"),shop=read("shop.html"),editor=read("catalog-studio.html");
+ assert.match(home, /id="featured-rail"/);
+ assert.match(home, /data-rail-move="-1"/);
+ assert.match(home, /data-rail-move="1"/);
+ assert.match(shop, /id="show-more"/);
+ assert.match(shop, /href="catalog-studio.html"/);
+ assert.match(editor, /id="studio-form"/);
+ assert.match(editor, /id="studio-photo"/);
+ assert.match(editor, /id="studio-export"/);
+ assert.match(editor, /NOT a secure owner dashboard/i);
+ assert.match(editor, /Other visitors and devices will not see them/i);
+ assert.match(read("assets/main.js"), /function initCatalogViews/);
+ assert.match(read("assets/main.js"), /IntersectionObserver/);
+ assert.match(read("assets/studio.js"), /localStorage.setItem/);
+ assert.doesNotMatch(read("assets/studio.js"), /fetch\s*\(/);
 });

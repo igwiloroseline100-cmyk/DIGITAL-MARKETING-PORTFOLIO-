@@ -7,9 +7,10 @@ import {fileURLToPath} from "node:url";
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const read=name=>fs.readFileSync(path.join(root,name),"utf8");
-function boot({pathname="/cedar-clay-store/shop.html",checkout=false}={}){
+function boot({pathname="/cedar-clay-store/shop.html",checkout=false,demoProducts=[]}={}){
   const ids=new Map(),listeners={},bodyClasses=new Set(),storage=new Map();
   let document;
+  if(demoProducts.length)storage.set("cedar-clay-local-products-v1",JSON.stringify(demoProducts));
   function element(id){
     const handlers={};const attrs={},classes=new Set();
     return {
@@ -133,4 +134,24 @@ test("changing payment method never enables payment and preserves demo amount",(
   assert.equal(app.get("payment-action-label").textContent,"Pay");
   assert.equal(app.get("payment-amount").textContent,"₦9,500");
   assert.equal(app.storage.get("cedar-clay-cart-v1"),'{"everyday-mug":1}');
+});
+
+
+test("locally added sample product merges into catalog and is usable in bag",()=>{
+ const app=boot({demoProducts:[{
+  id:"demo-test-123456",name:"Home Organizer (Local)",category:"Desk",
+  price:12300,description:"Local-only demo product",emoji:"📦",bg:"#e5e9da",imageData:""
+ }]});
+ app.documentClick("add","demo-test-123456");
+ assert.equal(app.get("quick-bag-subtotal").textContent,"₦12,300");
+ assert.match(app.get("quick-bag-items").innerHTML,/Home Organizer/);
+ assert.equal(app.get("quick-bag-panel").hidden,true);
+});
+test("unsafe local product data is not trusted as a catalog record",()=>{
+ const app=boot({demoProducts:[{
+  id:"<bad>",name:"Injected",category:"Desk",price:-1,
+  description:"Unsafe",bg:"red; background:url(javascript:evil())"
+ }]});
+ app.documentClick("add","<bad>");
+ assert.equal(app.get("quick-bag-subtotal").textContent,"₦0");
 });
