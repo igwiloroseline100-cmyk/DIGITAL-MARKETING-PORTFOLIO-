@@ -1,45 +1,25 @@
-# Digital Marketing Portfolio
+# Roseline Igwilo — Portfolio
 
-Welcome to my digital marketing portfolio.
+Live site: https://igwiloroseline100-cmyk.github.io/DIGITAL-MARKETING-PORTFOLIO-/
 
-## About Me
+## Focus
+- Web Development
+- Technical SEO
+- On-Page SEO
+- AI Automation
 
-I am building practical skills in Technical SEO and Meta Ads, with a focus on understanding how websites perform in search engines and how paid advertising can reach the right audience.
+## Portfolio navigation
+- `index.html` — portfolio homepage
+- `coding.html` — Web Development
+- `technical-seo.html` and `audit-lab.html` — Technical SEO investigations
+- `on-page-seo.html` — On-Page SEO
+- `ai-automation.html` — workflow structure and proposed automation systems
+- `about.html` — about
 
-## Skills
+Workflow proposals are labelled separately from implemented and verified results. The website does not claim unverified client outcomes.
 
-### Technical SEO
-- Crawling and Indexation
-- Technical SEO Auditing
-- Internal Linking
-- Canonical Tags
-- Robots.txt
-- XML Sitemaps
-- Duplicate Content
-- URL Parameters
-- Faceted Navigation
-- Core Web Vitals
-- Mobile SEO
-- JavaScript SEO
+## Website setup
+This is a static GitHub Pages site. The publishing workflow is in `.github/workflows/static.yml`. A successful code commit and a successful Pages deployment are separate checks.
 
-### Meta Ads
-- Campaign Strategy
-- Audience Research
-- Ad Creative Strategy
-- Ad Copy
-- Campaign Structure
-- A/B Testing
-- Retargeting
-- Performance Analysis
-
-## Projects
-
-### Technical SEO Projects
-Coming soon.
-
-### Meta Ads Projects
-Coming soon.
-
-## Contact
-
-More information coming soon.
+## Maintenance
+Update the relevant HTML page, commit to `main`, and check the latest GitHub Actions deployment before verifying the public page in a browser.
