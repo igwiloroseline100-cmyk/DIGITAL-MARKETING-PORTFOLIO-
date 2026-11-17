@@ -1,0 +1,23 @@
+name: Atelier Noor Booking Demo Checks
+on:
+  push:
+    paths:
+      - "atelier-noor/**"
+      - "coding.html"
+      - "index.html"
+      - ".github/workflows/atelier-noor-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test booking logic and pages
+        run: node --test atelier-noor/tests/*.mjs

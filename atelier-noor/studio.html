@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appointment Management Studio | Atelier Noor — Portfolio Demo</title>
+<meta name="description" content="An interactive simulated beauty salon dashboard for booking statuses, conflict-safe rescheduling and notification previews.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://igwiloroseline100-cmyk.github.io/DIGITAL-MARKETING-PORTFOLIO-/atelier-noor/studio.html">
+<meta name="theme-color" content="#faf7f2">
+<link rel="stylesheet" href="assets/styles.css">
+</head><body>
+<a href="#main" class="skip">Skip to content</a>
+<div class="demo-banner">FICTIONAL BEAUTY STUDIO · INTERACTIVE PORTFOLIO DEMO · NO REAL BOOKINGS</div>
+<header class="site-header"><div class="wrap nav-wrap"><a class="brand" href="index.html" aria-label="Atelier Noor home">atelier <b>noor.</b><small>BEAUTY STUDIO</small></a>
+<button class="nav-toggle" type="button" id="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+<nav id="nav-links" class="nav-links" aria-label="Main navigation"><a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="book.html" class="nav-cta">Book</a>
+<a href="my-bookings.html">My bookings</a>
+<a href="studio.html" aria-current="page">Studio demo</a></nav></div></header>
+<main id="main">
+<section class="page-hero"><div class="wrap"><p class="eyebrow">BUSINESS SIDE · BOOKING SYSTEM</p><h1>The studio,<br><em>organised.</em></h1><p class="lead">A working demonstration of appointment management: review requests, confirm visits, reschedule within available slots and preview customer updates.</p></div></section>
+<section class="section"><div class="wrap">
+<div class="notation"><strong>Public owner-interface demonstration:</strong> This page has no login because it is not a real admin account. It only shows sample appointments created in this same browser. Other visitors' data is not available, and no actual customers are contacted.</div>
+<div class="stats" aria-label="Local booking counts"><div class="stat"><strong id="stat-total">0</strong><span>Total sample requests</span></div><div class="stat"><strong id="stat-requested">0</strong><span>Awaiting review</span></div><div class="stat"><strong id="stat-confirmed">0</strong><span>Confirmed (demo)</span></div><div class="stat"><strong id="stat-closed">0</strong><span>Cancelled or completed</span></div></div>
+<div class="toolbar"><div class="filter-control"><label for="status-filter">View</label><select id="status-filter"><option value="all">All bookings</option><option value="Requested">Requested</option><option value="Confirmed">Confirmed</option><option value="Completed">Completed</option><option value="Cancelled">Cancelled</option></select></div>
+<div class="button-row"><a href="book.html" class="btn dark">Create test booking ↗</a><button type="button" id="clear-demo" class="text-button">Clear local demo data</button></div></div>
+<p id="dashboard-feedback" class="feedback" hidden></p>
+<div class="booking-stack" id="dashboard-bookings" aria-live="polite"><p>Loading demo diary…</p></div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap"><div class="footer-grid">
+<div><a class="brand" href="index.html">atelier <b>noor.</b><small>BEAUTY STUDIO</small></a><p>A fictional beauty and wellness studio made to demonstrate interactive booking experiences. No real services or appointments are provided.</p></div>
+<div><p class="eyebrow">Explore</p><a href="services.html">Our services</a><a href="book.html">Try booking</a><a href="my-bookings.html">My sample bookings</a><a href="studio.html">Owner dashboard demo</a></div>
+<div><p class="eyebrow">Prototype details</p><p>Sample prices in NGN. Booking data stays in this browser. No payment, email, private login, or live calendar connection.</p></div>
+</div><div class="footer-bottom">© <span id="current-year">2026</span> Atelier Noor · Independent web development portfolio demonstration</div></div></footer>
+<button type="button" id="guide-toggle" class="guide-toggle" aria-expanded="false" aria-controls="guide-panel">✧ Studio guide</button>
+<aside id="guide-panel" class="guide-panel" aria-label="Studio guide — scripted FAQ" hidden>
+<div class="guide-head"><div><h2>Studio guide</h2><p>Quick answers · scripted demonstration, not AI</p></div><button type="button" id="guide-close" aria-label="Close studio guide">✕</button></div>
+<div class="guide-options"><button type="button" data-guide="services">What services?</button><button type="button" data-guide="booking">How to book?</button><button type="button" data-guide="changes">Change booking?</button><button type="button" data-guide="payment">Payment?</button></div>
+<div id="guide-answer" class="guide-answer" role="status">Choose a question to see how a guided support assistant could help.</div>
+</aside>
+<script defer src="assets/booking-core.js"></script><script defer src="assets/app.js"></script>
+</body></html>
