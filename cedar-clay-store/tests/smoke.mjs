@@ -6,6 +6,7 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const repoRoot = path.resolve(root, "..");
 const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const pages = ["index.html", "shop.html", "cart.html", "checkout.html", "about.html", "contact.html", "catalog-studio.html", "product-preview.html", "orders.html", "order-studio.html"];
 const productFolder = path.join(root, "products");
@@ -38,7 +39,7 @@ test("local href and src paths resolve to existing files", () => {
       const target = reference.split("#")[0].split("?")[0];
       if (!target) continue;
       const absolute = path.resolve(path.dirname(path.join(root, page)), target);
-      assert.ok(absolute.startsWith(root + path.sep), "path outside project: " + page + " -> " + target);
+      assert.ok(absolute.startsWith(repoRoot + path.sep), "path outside repository: " + page + " -> " + target);
       assert.ok(fs.existsSync(absolute), "missing link: " + page + " -> " + target);
     }
   }
