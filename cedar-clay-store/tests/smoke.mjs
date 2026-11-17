@@ -49,7 +49,7 @@ test("product data matches dedicated detail pages and uses positive NGN numbers"
   vm.runInNewContext(read("assets/catalog.js"), context);
   const records = context.window.CC_CATALOG;
   assert.equal(records.length, 16);
-  assert.equal(new Set(Array.from(records, p => p.id)).size, 8);
+  assert.equal(new Set(Array.from(records, p => p.id)).size, 16);
   assert.equal(Array.from(records, p => p.category).filter(c => c === "Desk").length, 5);
   for (const item of records) {
     assert.ok(Number.isInteger(item.price) && item.price > 0);
@@ -65,7 +65,7 @@ test("shared JavaScript parses without syntax errors", () => {
 });
 
 test("sensitive demo features have honest disclosures", () => {
-  assert.match(read("checkout.html"), /no payment information/i);
+  assert.match(read("checkout.html"), /No account details, delivery address or payment credentials are collected/i);
   assert.match(read("contact.html"), /No message is delivered or saved/i);
   assert.match(read("cart.html"), /nothing is bought or transmitted/i);
 });
