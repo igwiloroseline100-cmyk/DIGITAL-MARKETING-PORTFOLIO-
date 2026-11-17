@@ -27,7 +27,7 @@ test("complementary services retain working navigation and grounded portfolio de
   }
   assert.match(read("index.html"),/href="cedar-clay-store\/index\.html"/);
   assert.match(read("index.html"),/browser-local fulfilment dashboard/);
-  assert.match(read("coding.html"),/not a live payment or order service/);
+  assert.match(read("coding.html"),/Browser-local management only; no real payments, secure shared backend or deliveries/);
   assert.match(read("ai-automation.html"),/not presented as a production deployment or verified client results/);
 });
 test("web development page showcases Cedar and Clay with working local demo destinations",()=>{
