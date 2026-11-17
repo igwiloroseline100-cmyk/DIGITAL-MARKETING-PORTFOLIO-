@@ -39,6 +39,18 @@ jobs:
         with:
           # Upload entire repository
           path: '.'
+      - name: Verify Pages artifact is visible
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in {1..10}; do
+            count=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '[.artifacts[] | select(.name == "github-pages")] | length')
+            echo "Available Pages artifacts: $count"
+            if [ "$count" -eq 1 ]; then exit 0; fi
+            sleep 5
+          done
+          echo "Pages artifact did not become visible to GitHub Actions" >&2
+          exit 1
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
