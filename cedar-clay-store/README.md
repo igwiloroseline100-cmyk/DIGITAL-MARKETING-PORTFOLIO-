@@ -10,7 +10,8 @@
 - Add-to-cart from shop cards and product pages
 - Quantity changes, item removal and recalculated totals
 - Browser-local cart persistence using localStorage (with an in-memory fallback)
-- Simulated checkout confirmation: clears the local cart and sends nothing
+- Floating quick-bag button available on every page, including mobile; opens an accessible side drawer with quantity, removal and running subtotal
+- Checkout review displays example Nigerian bank options, but the final payment button is disabled and the cart stays unchanged
 - Contact form with browser validation; no message transmission or storage
 - Descriptive page titles, meta descriptions, relative internal links and canonical URLs
 
@@ -22,7 +23,7 @@
 - `shop.html` — product catalogue, search, categories and sorting
 - `products/*.html` — 8 individual product detail pages
 - `cart.html` — persistent demo cart
-- `checkout.html` — local checkout simulation
+- `checkout.html` — payment-method preview with banks but no payment connection
 - `about.html` — brand story / project transparency
 - `contact.html` — locally validated demonstration form
 - `assets/styles.css` — shared design system and responsive rules
@@ -54,10 +55,12 @@ node --test tests/smoke.mjs
 4. Open a product detail page. Change quantity to 2 and add to bag.
 5. Reload the page in the same browser. Bag count should remain 2.
 6. In Bag, increase the mug quantity to 3. Subtotal should be ₦28,500 if only the mug is present.
-7. Complete demo checkout. Confirm the cart is empty and no order is actually sent.
-8. On mobile width, open and close the menu.
-9. On Contact, try an invalid email and a too-short message to check validation.
-10. Repeat in private browsing. Cart storage should be separate.
+7. Use the floating bag button from any page; check its count, subtotal, increment/decrement and remove buttons.
+8. Open checkout and select **View payment options**. Verify the bank list is shown and the **Pay** button cannot be clicked.
+9. Check that previewing banks does not change the cart and no banking information is requested.
+10. On mobile width, open and close the menu and floating bag.
+11. On Contact, try an invalid email and a too-short message to check validation.
+12. Repeat in private browsing. Cart storage should be separate.
 
 ## Publishing
 

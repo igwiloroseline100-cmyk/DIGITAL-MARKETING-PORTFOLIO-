@@ -14,3 +14,51 @@
 @media(max-width:720px){.container{width:min(100% - 32px,1150px)}.header-inner{min-height:68px;flex-wrap:wrap}.nav-toggle{display:block;border:1px solid var(--line);border-radius:5px;background:#fff;padding:6px 13px;font-size:1.3rem}.nav-menu{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;gap:0;padding-bottom:14px}.nav-menu.open{display:flex}.nav-menu>a{padding:8px 0}.hero-grid,.detail-grid,.story,.contact-columns{grid-template-columns:1fr}.hero-grid{padding:60px 0}.hero-art{height:340px;max-width:540px}.hero-emoji{font-size:10rem}.hero-label{right:0}.section{padding:65px 0}.product-grid{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:1fr;gap:8px}.benefits>article{padding:18px}.cart-columns{grid-template-columns:1fr}.summary{position:static}.story-art{min-height:280px;font-size:8rem}.contact-columns{gap:25px}.footer-cols{grid-template-columns:1fr 1fr}.footer-cols>div:last-child{grid-column:1/-1}.page-intro{padding:63px 0}.shop-tools{align-items:stretch;flex-direction:column}.search-box,.sort-box{width:100%}.detail-art{min-height:360px}.detail-art>span{font-size:9rem}}
 @media(max-width:470px){.product-grid{gap:10px}.product-meta{display:block;padding:12px 11px 0}.product-meta b{display:block;margin-top:4px}.product-card h3{padding:5px 11px 12px;font-size:.93rem}.product-media>span{font-size:4.6rem}.quick-add{padding:10px 11px;font-size:.78rem}.section-title{flex-direction:column;align-items:start}.hero-art{height:300px}.cart-row{grid-template-columns:78px 1fr;gap:10px}.cart-mini{height:88px;font-size:2.3rem}.cart-detail{flex-direction:column;gap:5px}.detail-actions>div{flex-wrap:wrap}.detail-actions .btn{flex:1}.footer-cols{grid-template-columns:1fr}.footer-cols>div:last-child{grid-column:auto}.toast{right:10px;left:10px;bottom:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Shared floating bag, usable from every store page including mobile. */
+body.quick-bag-open{overflow:hidden}
+.quick-bag-trigger{position:fixed;right:20px;bottom:20px;z-index:310;display:flex;align-items:center;gap:9px;background:var(--dark);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:13px 17px;box-shadow:0 12px 34px rgba(20,36,29,.28);font-weight:780;font-size:.9rem}
+.quick-bag-trigger:hover{background:#355240}
+.quick-bag-trigger b{background:#e9f0e6;color:#20372b;min-width:24px;height:24px;border-radius:99px;display:grid;place-items:center;padding:0 5px;font-size:.76rem}
+.quick-bag-trigger strong{border-left:1px solid rgba(255,255,255,.3);padding-left:11px;font-size:.84rem;white-space:nowrap}
+.quick-bag-scrim{position:fixed;inset:0;background:rgba(12,25,18,.52);z-index:400}
+.quick-bag-panel{position:fixed;top:0;bottom:0;right:0;width:min(450px,100%);z-index:410;background:#fff;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.15);overflow:hidden}
+.quick-bag-header{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding:23px 25px;border-bottom:1px solid var(--line)}
+.quick-bag-header .kicker{margin-bottom:8px}
+.quick-bag-header h2{font-size:1.65rem;margin:0}
+.quick-bag-header h2 span{font-size:.9rem;letter-spacing:0;color:var(--muted)}
+.quick-bag-close{background:#f1f2ed;border:0;width:39px;height:39px;border-radius:50%;font-size:1.04rem}
+.quick-bag-items{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:8px 25px}
+.quick-bag-item{display:grid;grid-template-columns:78px minmax(0,1fr);gap:14px;padding:19px 0;border-bottom:1px solid var(--line)}
+.quick-bag-icon{border-radius:8px;min-height:82px;display:grid;place-items:center;font-size:2.5rem}
+.quick-bag-item-details{min-width:0}
+.quick-bag-name{display:block;font-weight:760;font-size:.94rem;line-height:1.3;text-decoration:none}
+.quick-bag-name:hover{text-decoration:underline}
+.quick-bag-category{display:block;color:var(--muted);font-size:.77rem;margin:2px 0}
+.quick-bag-price{display:block;font-size:.88rem;color:var(--dark)}
+.quick-bag-actions{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.quick-bag-actions .qty-box{margin-top:9px}
+.quick-bag-actions .remove{margin-top:9px}
+.quick-bag-footer{padding:18px 25px 25px;border-top:1px solid var(--line);background:#f8f8f3;box-shadow:0 -8px 20px rgba(0,0,0,.035)}
+.quick-bag-footer .summary-row{font-size:1.13rem;margin:0 0 5px}
+.quick-bag-footer p{font-size:.76rem;color:var(--muted);margin:0 0 14px}
+.quick-bag-footer .back{margin-top:11px}
+.quick-bag-empty{padding:55px 9px;text-align:center}
+.quick-bag-empty p{color:var(--muted)}
+.quick-bag-checkout[aria-disabled=true],.quick-bag-footer .btn[aria-disabled=true]{opacity:.45;pointer-events:none}
+.toast{right:auto;left:20px}
+.payment-options{margin-top:28px;border:1px solid var(--line);border-radius:12px;padding:28px;background:#fff}
+.payment-options h2{font-size:1.65rem;margin:0 0 14px}
+.payment-options h2:focus{outline:2px solid #cd9569;outline-offset:4px}
+.payment-options>p:not(.kicker):not(.payment-safety){color:var(--muted);font-size:.9rem}
+.bank-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;border:0;padding:0;margin:23px 0}
+.bank-options legend{font-size:.83rem;font-weight:790;margin-bottom:13px}
+.bank-option{display:flex;gap:11px;align-items:center;border:1px solid var(--line);padding:14px;border-radius:8px;cursor:pointer}
+.bank-option:has(input:checked){border-color:#356849;background:#f0f6ed}
+.bank-option input{width:18px;height:18px;accent-color:#245638;flex:none}
+.bank-option-copy{display:flex;flex-direction:column;gap:3px}
+.bank-option strong{font-size:.82rem;line-height:1.25}
+.bank-option small{font-size:.69rem;color:var(--muted);line-height:1.35}
+.payment-options .btn[disabled]{opacity:.48;cursor:not-allowed}
+.payment-safety{font-size:.78rem;color:var(--muted);margin:13px 0 0}
+@media(max-width:640px){.bank-options{grid-template-columns:1fr}.quick-bag-trigger{right:13px;bottom:13px;padding:11px 13px;font-size:.82rem}.quick-bag-panel{width:min(420px,100%)}.quick-bag-header,.quick-bag-items,.quick-bag-footer{padding-left:18px;padding-right:18px}.toast{bottom:80px;right:13px;left:13px}}

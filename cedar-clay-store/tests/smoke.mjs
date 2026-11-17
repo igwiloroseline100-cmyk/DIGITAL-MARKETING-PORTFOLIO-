@@ -69,3 +69,30 @@ test("sensitive demo features have honest disclosures", () => {
   assert.match(read("contact.html"), /No message is delivered or saved/i);
   assert.match(read("cart.html"), /nothing is bought or transmitted/i);
 });
+
+
+test("the shared script creates a bag accessible on every page, with removal and totals", () => {
+  const js = read("assets/main.js");
+  assert.match(js, /function initQuickBag\(/);
+  assert.match(js, /quick-bag-trigger/);
+  assert.match(js, /aria-modal/);
+  assert.match(js, /function renderQuickBag\(/);
+  assert.match(js, /data-remove/);
+  assert.match(js, /quick-bag-subtotal/);
+  assert.match(js, /renderQuickBag\(\);renderCart\(\);renderCheckout\(\)/);
+  assert.match(js, /localStorage\.setItem/);
+});
+
+test("payment step lists example banks and explicitly cannot transfer funds", () => {
+  const html = read("checkout.html");
+  for (const bank of ["Access Bank", "First Bank", "Guaranty Trust Bank", "United Bank for Africa", "Zenith Bank", "Fidelity Bank"]) {
+    assert.ok(html.includes(bank), "missing demonstration bank " + bank);
+  }
+  assert.match(html, /id="show-payment-options"/);
+  assert.match(html, /id="payment-options"[^>]*hidden/);
+  assert.match(html, /name="demo-bank"/);
+  assert.match(html, /id="payment-amount"/);
+  assert.match(html, /<button[^>]+disabled aria-disabled="true"/);
+  assert.doesNotMatch(html, /demo-confirm|Complete demo checkout/);
+  assert.doesNotMatch(read("assets/main.js"), /id="demo-confirm"|getElementById\("demo-confirm"\)/);
+});
