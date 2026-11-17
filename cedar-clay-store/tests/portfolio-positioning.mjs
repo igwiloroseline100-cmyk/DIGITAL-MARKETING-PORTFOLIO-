@@ -26,8 +26,8 @@ test("complementary services retain working navigation and grounded portfolio de
       assert.match(html,/<title>[^<]+<\/title>/,page);
   }
   assert.match(read("index.html"),/href="cedar-clay-store\/index\.html"/);
-  assert.match(read("index.html"),/browser-local fulfilment dashboard/);
-  assert.match(read("coding.html"),/Browser-local management only; no real payments, secure shared backend or deliveries/);
+  assert.match(read("index.html"),/separate server-side backend prototypes/);
+  assert.match(read("coding.html"),/separate authenticated Node backend prototype supports owner operations/);
   assert.match(read("ai-automation.html"),/not presented as a production deployment or verified client results/);
 });
 test("web development page showcases Cedar and Clay with working local demo destinations",()=>{
@@ -37,5 +37,5 @@ test("web development page showcases Cedar and Clay with working local demo dest
    assert.ok(html.includes('href="cedar-clay-store/'+page+'"'),"missing link "+page);
    assert.ok(fs.existsSync(path.join(root,"cedar-clay-store",page)),"missing target "+page);
  }
- assert.match(html,/Browser-local management only/);
+ assert.match(html,/separate authenticated Node backend prototype supports owner operations/);
 });

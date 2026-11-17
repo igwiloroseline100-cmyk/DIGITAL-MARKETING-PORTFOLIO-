@@ -89,19 +89,22 @@ test("all independent pages are present and link to the scripts",()=>{
   const html=read(name);
   assert.match(html,/<title>[^<]+<\/title>/,name);
   assert.match(html,/FICTIONAL BEAUTY STUDIO/,name);
-  assert.match(html,/src="assets\/booking-core\.js"/,name);
-  assert.match(html,/src="assets\/app\.js"/,name);
+  if(name!=="studio.html"){
+   assert.match(html,/src="assets\/booking-core\.js"/,name);
+   assert.match(html,/src="assets\/app\.js"/,name);
+  }
   assert.match(html,/href="services\.html"/,name);
   assert.match(html,/href="book\.html"/,name);
-  assert.match(html,/href="studio\.html"/,name);
+  if(name!=="studio.html")assert.match(html,/href="studio\.html"/,name);
   assert.match(html,/no real/i,name);
  }
  assert.match(read("services.html"),/id="service-filter"/);
  assert.match(read("book.html"),/id="booking-form"/);
  assert.match(read("book.html"),/id="slots"/);
  assert.match(read("my-bookings.html"),/id="customer-bookings"/);
- assert.match(read("studio.html"),/id="dashboard-bookings"/);
- assert.match(read("studio.html"),/no login/);
+ assert.match(read("studio.html"),/Owner system preview/);
+ assert.match(read("studio.html"),/read.only/i);
+ assert.doesNotMatch(read("studio.html"),/id="dashboard-bookings"/);
 });
 
 test("no payment collection, external customer API or fake AI claims are wired",()=>{

@@ -111,11 +111,9 @@ test("scrollable browse and owner-side local editor have explicit boundaries", (
  assert.match(home, /data-rail-move="1"/);
  assert.match(shop, /id="show-more"/);
  assert.match(shop, /href="catalog-studio.html"/);
- assert.match(editor, /id="studio-form"/);
- assert.match(editor, /id="studio-photo"/);
- assert.match(editor, /id="studio-export"/);
- assert.match(editor, /NOT a secure owner dashboard/i);
- assert.match(editor, /Other visitors and devices will not see them/i);
+ assert.match(editor, /Owner system preview/i);
+ assert.match(editor, /read.only/i);
+ assert.doesNotMatch(editor, /id="studio-form"|id="studio-photo"|id="studio-export"/);
  assert.match(read("assets/main.js"), /function initCatalogViews/);
  assert.match(read("assets/main.js"), /IntersectionObserver/);
  assert.match(read("assets/studio.js"), /localStorage.setItem/);
@@ -144,8 +142,9 @@ test("simulated checkout and shipping journey are functional yet clearly labelle
   assert.match(checkout,/assets\/order-demo.js/);
   const orders=read("orders.html"),admin=read("order-studio.html");
   assert.match(orders,/id="demo-orders-list"/);
-  assert.match(admin,/id="demo-admin-orders"/);
-  assert.match(admin,/Not a private admin page/);
+  assert.match(admin,/Owner system preview/i);
+  assert.match(admin,/read.only/i);
+  assert.doesNotMatch(admin,/id="demo-admin-orders"/);
   assert.match(read("assets/order-demo.js"),/function initCheckout/);
   assert.match(read("assets/order-demo.js"),/function initCustomerOrders/);
   assert.match(read("assets/order-demo.js"),/function initOwnerOrders/);

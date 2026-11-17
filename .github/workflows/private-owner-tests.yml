@@ -1,0 +1,22 @@
+name: Private Owner Backend Checks
+on:
+  push:
+    paths:
+      - "private-backend/**"
+      - "atelier-noor/studio.html"
+      - "cedar-clay-store/order-studio.html"
+      - "cedar-clay-store/catalog-studio.html"
+      - ".github/workflows/private-owner-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify protected owner routes and both service workflows
+        run: node --test private-backend/tests/*.test.cjs
