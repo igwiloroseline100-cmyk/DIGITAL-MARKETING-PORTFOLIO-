@@ -30,6 +30,7 @@ function boot({pathname="/cedar-clay-store/shop.html",checkout=false}={}){
   const body=element("body");
   body.classList={add:x=>bodyClasses.add(x),remove:x=>bodyClasses.delete(x)};
   body.append=(mount)=>{
+    register("quick-bag-widget").innerHTML=mount.innerHTML;
     for(const match of mount.innerHTML.matchAll(/\bid="([^"]+)"/g))register(match[1]);
     const modal=get("quick-bag-panel"),scrim=get("quick-bag-scrim");
     if(modal)modal.hidden=true;
@@ -91,7 +92,7 @@ test("bag can be opened and closed from a product detail page using correct rela
   const app=boot({pathname:"/cedar-clay-store/products/everyday-mug.html"});
   app.documentClick("add","orbit-vase");
   assert.match(app.get("quick-bag-items").innerHTML,/href="\.\.\/products\/orbit-vase\.html"/);
-  assert.match(app.get("quick-bag-panel").innerHTML,/href="\.\.\/checkout\.html"/);
+  assert.match(app.get("quick-bag-widget").innerHTML,/href="\.\.\/checkout\.html"/);
   app.fire("quick-bag-close","click");
   assert.equal(app.get("quick-bag-panel").hidden,true);
   assert.equal(app.get("quick-bag-trigger").getAttribute("aria-expanded"),"false");
