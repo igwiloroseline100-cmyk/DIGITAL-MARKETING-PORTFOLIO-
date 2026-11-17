@@ -68,7 +68,11 @@ function boot({pathname="/cedar-clay-store/shop.html",checkout=false,demoProduct
     assert.equal(typeof el.handlers[type],"function","missing listener "+id+" "+type);
     el.handlers[type]({...details,target:details.target??el});
   }
-  return {get,documentClick,fire,storage,body,headerCount};
+  function changeQuantity(id,value){
+    const field={dataset:{qtyInput:id},value:String(value)};
+    listeners.change({target:{closest:selector=>selector==="[data-qty-input]"?field:null}});
+  }
+  return {get,documentClick,fire,changeQuantity,storage,body,headerCount};
 }
 test("floating bag counts products, calculates subtotals, updates quantities and removes items",()=>{
   const app=boot();
@@ -155,4 +159,28 @@ test("unsafe local product data is not trusted as a catalog record",()=>{
  }]});
  app.documentClick("add","<bad>");
  assert.equal(app.get("quick-bag-subtotal").textContent,"₦0");
+});
+
+
+test("direct quantity entry supports 50 units and recalculates the bag total",()=>{
+ const app=boot({checkout:true});
+ app.documentClick("add","everyday-mug");
+ assert.match(app.get("quick-bag-items").innerHTML,/data-qty-input="everyday-mug"/);
+ app.changeQuantity("everyday-mug",50);
+ assert.equal(app.get("quick-bag-subtotal").textContent,"₦475,000");
+ assert.equal(app.get("checkout-total").textContent,"₦475,000");
+ assert.equal(app.headerCount.textContent,"50");
+ assert.equal(app.storage.get("cedar-clay-cart-v1"),'{"everyday-mug":50}');
+});
+test("bulk quantity input rejects non-integer and out-of-range values",()=>{
+ const app=boot();
+ app.documentClick("add","everyday-mug");
+ app.changeQuantity("everyday-mug","50.5");
+ assert.equal(app.get("quick-bag-subtotal").textContent,"₦9,500");
+ app.changeQuantity("everyday-mug",1000);
+ assert.equal(app.get("quick-bag-subtotal").textContent,"₦9,500");
+ app.changeQuantity("everyday-mug",-1);
+ assert.equal(app.get("quick-bag-subtotal").textContent,"₦9,500");
+ app.changeQuantity("everyday-mug",999);
+ assert.equal(app.get("quick-bag-subtotal").textContent,"₦9,490,500");
 });

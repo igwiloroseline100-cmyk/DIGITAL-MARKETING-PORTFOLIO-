@@ -120,3 +120,11 @@ test("scrollable browse and owner-side local editor have explicit boundaries", (
  assert.match(read("assets/studio.js"), /localStorage.setItem/);
  assert.doesNotMatch(read("assets/studio.js"), /fetch\s*\(/);
 });
+
+
+test("direct quantity fields allow 1 to 999 on every product details page",()=>{
+  assert.match(read("assets/main.js"), /MAX_QTY=999/);
+  assert.match(read("assets/main.js"), /Number\.isSafeInteger\(qty\)/);
+  for (const page of productPages) assert.match(read(page), /max="999"/, page + " must accept bulk quantities");
+  assert.match(read("product-preview.html"), /max="999"/);
+});

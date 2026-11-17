@@ -158,3 +158,11 @@ body.quick-bag-open{overflow:hidden}
 @media(max-width:780px){.studio-grid{grid-template-columns:1fr}.studio-help{position:static}.featured-rail .product-card{flex-basis:245px}.rail-controls button{width:35px;height:35px}}
 @media(max-width:520px){.studio-form-card,.studio-help{padding:20px}.studio-product{align-items:flex-start}.studio-product-actions{flex-direction:column}.studio-product-actions button{padding:5px 9px}.featured-rail .product-card{flex-basis:75vw}.rail-controls .plain-link{flex-basis:100%}}
 @media(prefers-reduced-motion:reduce){.product-media img,.rail-controls button{transition:none!important}.rail-controls button:hover{transform:none}}
+
+/* Let shoppers type any demo quantity from 1 to 999 without repeated tapping. */
+.qty-box .qty-direct{width:65px;min-width:0;height:37px;padding:2px 5px;border:0;border-inline:1px solid var(--line);border-radius:0;text-align:center;font-size:.95rem;line-height:1;background:#fff;color:var(--ink);font-variant-numeric:tabular-nums}
+.qty-box .qty-direct::-webkit-inner-spin-button,.qty-box .qty-direct::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.qty-box .qty-direct{-moz-appearance:textfield;appearance:textfield}
+.qty-box button{min-width:35px;min-height:37px}
+.qty-box button:disabled{opacity:.35;cursor:not-allowed}
+.detail-actions input[type=number]{min-height:44px;width:100px}

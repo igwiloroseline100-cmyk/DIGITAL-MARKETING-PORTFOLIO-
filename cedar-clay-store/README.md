@@ -83,3 +83,7 @@ The publicly accessible `catalog-studio.html` page is a **UI prototype**, not a 
 The real production architecture should be an authenticated owner dashboard, database-managed products, secure image storage and backend policies enforcing permissions (e.g. managed auth + product records + image objects). Never put database service-role credentials or GitHub access tokens into front-end JavaScript. The UI must connect to a properly authenticated backend before describing it as a live multi-user catalogue.
 
 Static seed detail pages exist for SEO demonstration; new local products use a JavaScript-rendered demo detail template. Production catalogue SEO should be reviewed separately when actual indexed products exist.
+
+## Bulk quantities (demo)
+
+Cart quantities can be typed directly (for example 50), or adjusted with + and −. The demo supports whole numbers from **1 to 999** per product and updates counts, subtotals and the checkout preview. This does not verify available stock: in a real ecommerce backend, inventory and purchase limits must be enforced server-side.
