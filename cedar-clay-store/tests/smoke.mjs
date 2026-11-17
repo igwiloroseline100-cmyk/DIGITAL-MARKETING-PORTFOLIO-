@@ -7,13 +7,13 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
-const pages = ["index.html", "shop.html", "cart.html", "checkout.html", "about.html", "contact.html", "catalog-studio.html", "product-preview.html"];
+const pages = ["index.html", "shop.html", "cart.html", "checkout.html", "about.html", "contact.html", "catalog-studio.html", "product-preview.html", "orders.html", "order-studio.html"];
 const productFolder = path.join(root, "products");
 const productPages = fs.readdirSync(productFolder).filter(p => p.endsWith(".html")).map(p => "products/" + p);
 const allPages = [...pages, ...productPages];
 
-test("all eight main pages and sixteen static detail pages exist", () => {
-  assert.equal(pages.length, 8);
+test("all ten main pages and sixteen static detail pages exist", () => {
+  assert.equal(pages.length, 10);
   assert.equal(productPages.length, 16);
   for (const page of allPages) assert.ok(fs.existsSync(path.join(root, page)), page);
 });
@@ -67,10 +67,11 @@ test("shared JavaScript parses without syntax errors", () => {
   assert.doesNotThrow(() => new vm.Script(read("assets/catalog.js")));
   assert.doesNotThrow(() => new vm.Script(read("assets/main.js")));
   assert.doesNotThrow(() => new vm.Script(read("assets/studio.js")));
+  assert.doesNotThrow(() => new vm.Script(read("assets/order-demo.js")));
 });
 
 test("sensitive demo features have honest disclosures", () => {
-  assert.match(read("checkout.html"), /No account details, delivery address or payment credentials are collected/i);
+  assert.match(read("checkout.html"), /without real payment or personal information/i);
   assert.match(read("contact.html"), /No message is delivered or saved/i);
   assert.match(read("cart.html"), /nothing is bought or transmitted/i);
 });
@@ -130,14 +131,23 @@ test("direct quantity fields allow 1 to 999 on every product details page",()=>{
 });
 
 
-test("planned shipping journey is disclosed without pretending orders are active", () => {
-  const html=read("checkout.html");
-  assert.match(html, /id="order-journey-title"/);
-  assert.match(html, /Payment verified/);
-  assert.match(html, /Shipping date confirmed/);
-  assert.match(html, /No date is promised in advance/);
-  assert.match(html, /Prototype only — no orders accepted/);
-  assert.match(html, /payment verification and no shipping emails sent/);
-  assert.match(html, /<button type="button" class="btn wide" disabled aria-disabled="true">/);
-  assert.doesNotMatch(html, /your order (?:has been |was )?(?:placed|confirmed|shipped)/i);
+test("simulated checkout and shipping journey are functional yet clearly labelled",()=>{
+  const checkout=read("checkout.html");
+  assert.match(checkout,/id="order-journey-title"/);
+  assert.match(checkout,/id="place-demo-order"/);
+  assert.match(checkout,/id="payment-options"/);
+  assert.match(checkout,/Real payment disabled/);
+  assert.match(checkout,/Working browser-local simulation/);
+  assert.match(checkout,/no live payment verification/);
+  assert.match(checkout,/no shipping emails sent/);
+  assert.match(checkout,/<button type="button" class="btn wide" disabled aria-disabled="true">/);
+  assert.match(checkout,/assets\/order-demo.js/);
+  const orders=read("orders.html"),admin=read("order-studio.html");
+  assert.match(orders,/id="demo-orders-list"/);
+  assert.match(admin,/id="demo-admin-orders"/);
+  assert.match(admin,/Not a private admin page/);
+  assert.match(read("assets/order-demo.js"),/function initCheckout/);
+  assert.match(read("assets/order-demo.js"),/function initCustomerOrders/);
+  assert.match(read("assets/order-demo.js"),/function initOwnerOrders/);
+  assert.doesNotMatch(read("assets/order-demo.js"),/\bfetch\s*\(/);
 });

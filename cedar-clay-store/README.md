@@ -13,11 +13,14 @@
 - Quantity changes, item removal and recalculated totals
 - Browser-local cart persistence using localStorage (with an in-memory fallback)
 - Floating quick-bag button available on every page, including mobile; opens an accessible side drawer on request with quantity, removal and running subtotal. Adding an item no longer interrupts browsing
-- Checkout review offers bank transfer, pay on delivery and card payment previews. Sample bank choices and a clearly non-payable account-number placeholder are shown; the final button remains disabled. A clearly labelled, nonfunctional order-status and shipping-notification journey shows what a live backend would eventually support
+- Checkout review offers bank transfer, pay on delivery and card previews. The **real payment** control remains disabled, while a separate working sample-order action simulates test payment success or creates an unpaid pay-on-delivery order
+- Sample order creation records item snapshots, quantities, prices and method locally, clears the demonstration bag and opens customer order history
+- Demo order studio lets you change fulfilment stages, schedule a sample shipping date, and simulate cash collection for pay-on-delivery orders
+- Customer order tracker shows live-to-this-browser state changes and the example message that would be sent; no email is actually sent
 - Contact form with browser validation; no message transmission or storage
 - Descriptive page titles, meta descriptions, relative internal links and canonical URLs
 
-**Not yet implemented:** a database, authentication, inventory system, payment processing, secure order handling, delivery pricing or real business contact forms. All pages use `noindex,follow` until the demo inventory is replaced with real listings and the launch configuration is reviewed.
+**Not yet implemented:** a shared database, real owner authentication, enforceable inventory, production payment processing, secure cross-device order handling, real delivery pricing or email notifications. All pages use `noindex,follow` until the demo inventory is replaced with real listings and the launch configuration is reviewed.
 
 ## Site structure
 
@@ -27,7 +30,10 @@
 - `product-preview.html?id=…` — dynamic detail view for added sample items and local drafts
 - `catalog-studio.html` — browser-local catalogue editor demonstration; not authenticated, not published globally
 - `cart.html` — persistent demo cart
-- `checkout.html` — payment-method previews for bank transfer, pay on delivery, card; no payment connection
+- `checkout.html` — bank transfer, pay on delivery, card preview and working fictional order simulator; real payment disabled
+- `orders.html` — simulated customer order history and fulfilment tracking
+- `order-studio.html` — owner-side local order management and shipping-date scheduler
+- `assets/order-demo.js` — sample order state machine and management UI (browser-local only)
 - `about.html` — brand story / project transparency
 - `contact.html` — locally validated demonstration form
 - `assets/styles.css` — shared design system and responsive rules
@@ -62,8 +68,8 @@ node --test tests/smoke.mjs
 5. Reload the page in the same browser. Bag count should remain 2.
 6. In Bag, increase the mug quantity to 3. Subtotal should be ₦28,500 if only the mug is present.
 7. Use the floating bag button from any page to open it manually; check its count, subtotal, increment/decrement and remove buttons.
-8. Open checkout and select **View payment options**, choose Bank transfer, pick a sample bank and inspect the **non-payable** account placeholder. Confirm the final Pay button cannot be clicked.
-9. Change to Pay on delivery and then Card. Each shows a distinct preview, but no payment or delivery proceeds, and the cart stays unchanged.
+8. Open checkout and select **Choose payment method**, choose Bank transfer and a sample bank. Confirm the real Pay button remains disabled. Use the separate order simulation button.
+9. Change to Pay on delivery and then Card. Each has its own preview. In the demo-only order flow, a new order is stored and the bag clears; no money moves.
 10. On mobile width, open and close the menu and floating bag.
 11. On Contact, try an invalid email and a too-short message to check validation.
 12. Repeat in private browsing. Cart storage should be separate.
@@ -87,3 +93,17 @@ Static seed detail pages exist for SEO demonstration; new local products use a J
 ## Bulk quantities (demo)
 
 Cart quantities can be typed directly (for example 50), or adjusted with + and −. The demo supports whole numbers from **1 to 999** per product and updates counts, subtotals and the checkout preview. This does not verify available stock: in a real ecommerce backend, inventory and purchase limits must be enforced server-side.
+
+## End-to-end order lifecycle (simulated)
+
+1. Add sample products and adjust quantities in the cart.
+2. At Checkout, reveal payment choices and pick a method.
+3. The real Pay button remains disabled. **A separate button creates a sample order** after choosing a method (and a bank for the bank-transfer preview).
+4. Card / transfer creates a `Test payment simulated` record, never a genuine verified payment. Pay on delivery creates an unpaid demo order.
+5. Customer is redirected to `orders.html?id=CC-DEMO-...` showing order reference, item quantities, fictional totals and payment status.
+6. Open `order-studio.html` **in the same browser** to choose a fulfilment stage and example shipping date, or simulate COD cash collection.
+7. Reopen the order tracker to see the updated stage, date and notification preview. **No emails are sent.**
+
+The local data is not shared between browsers or devices and can be changed or cleared by anyone using the same browser. It is a functional demonstration of the order journey, not a production implementation of authentication, verified payments, logistics or notification delivery.
+
+To deploy this for an actual business, add authenticated owner accounts, a shared orders database, server-side price/stock checks, verified payment-provider callbacks, permission-controlled status changes, and a transactional notification service. Test in the payment provider's sandbox before switching to live money.
