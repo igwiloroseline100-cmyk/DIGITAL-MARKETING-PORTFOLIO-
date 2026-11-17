@@ -30,3 +30,12 @@ test("complementary services retain working navigation and grounded portfolio de
   assert.match(read("coding.html"),/not a live payment or order service/);
   assert.match(read("ai-automation.html"),/not presented as a production deployment or verified client results/);
 });
+test("web development page showcases Cedar and Clay with working local demo destinations",()=>{
+ const html=read("coding.html");
+ assert.match(html,/id="cedar-project-title"/);
+ for(const page of ["index.html","shop.html","order-studio.html","catalog-studio.html"]){
+   assert.ok(html.includes('href="cedar-clay-store/'+page+'"'),"missing link "+page);
+   assert.ok(fs.existsSync(path.join(root,"cedar-clay-store",page)),"missing target "+page);
+ }
+ assert.match(html,/Browser-local management only/);
+});

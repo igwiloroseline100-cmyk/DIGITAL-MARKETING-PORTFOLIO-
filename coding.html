@@ -6,7 +6,7 @@
 
     <title>Web Development | Roseline Igwilo</title>
 
-    <meta name="description" content="Explore Roseline Igwilo's web development approach, responsive page structure, practical website implementation and GitHub Pages work.">
+    <meta name="description" content="Explore Roseline Igwilo’s web development portfolio and Cedar & Clay, a functional e-commerce demonstration with shopping, local product management and simulated orders.">
 
     <style>
         * {
@@ -341,6 +341,17 @@
                 font-size: clamp(2.8rem, 14vw, 4.5rem);
             }
         }
+
+        .featured-web-project{margin-top:25px;padding:clamp(20px,3vw,32px);border:1px solid rgba(255,255,255,.3);border-radius:18px;background:rgba(255,255,255,.10)}
+        .featured-web-project .featured-project-label{color:#d0dcff;font-size:.74rem;font-weight:800;letter-spacing:.08em;margin:0 0 10px}
+        .featured-web-project h3{font-size:clamp(1.4rem,3vw,2rem);line-height:1.15;margin-bottom:12px;color:#fff}
+        .featured-web-project p{max-width:750px}
+        .featured-project-links{display:flex;flex-wrap:wrap;gap:11px;margin:23px 0 18px}
+        .featured-project-links a{background:#fff;border:1px solid #fff;border-radius:9px;color:#17245c;font-weight:750;text-decoration:none;padding:11px 14px;font-size:.86rem;transition:background-color .2s,transform .2s}
+        .featured-project-links a:hover,.featured-project-links a:focus-visible{background:#e5ebff;transform:translateY(-2px)}
+        .featured-web-project .featured-project-note{color:#e3e9ff;font-size:.82rem;margin-bottom:0}
+        @media(max-width:500px){.featured-project-links{flex-direction:column}.featured-project-links a{text-align:center}}
+        @media(prefers-reduced-motion:reduce){.featured-project-links a{transition:none}.featured-project-links a:hover{transform:none}}
     </style>
 </head>
 
@@ -579,11 +590,19 @@
                     Website work and implementation.
                 </h2>
 
-                <p>
-                    Featured project: Cedar &amp; Clay, a fictional multi-page e-commerce storefront with catalogue search and filters, bulk-quantity cart, an editable local product catalogue, simulated order creation, customer tracking and an owner-side fulfilment dashboard. Its workflow is browser-local, not a live payment or order service.
-                </p>
-
-                <p><a href="cedar-clay-store/index.html" class="button">Explore Cedar &amp; Clay storefront →</a> <a href="cedar-clay-store/order-studio.html" class="button">Explore order-management demo →</a></p>
+                <article class="featured-web-project" aria-labelledby="cedar-project-title">
+                    <p class="featured-project-label">FEATURED WEB DEVELOPMENT PROJECT · FUNCTIONAL PORTFOLIO DEMO</p>
+                    <h3 id="cedar-project-title">Cedar &amp; Clay — E-Commerce Storefront</h3>
+                    <p>A multi-page shopping demonstration with 28 sample products, a searchable catalogue, scrollable browsing, direct-quantity cart, and simulated checkout and order tracking.</p>
+                    <p>Explore both customer and owner-facing interfaces through the links below.</p>
+                    <div class="featured-project-links">
+                        <a href="cedar-clay-store/index.html">Visit live demo storefront ↗</a>
+                        <a href="cedar-clay-store/shop.html">Browse products ↗</a>
+                        <a href="cedar-clay-store/order-studio.html">Order management ↗</a>
+                        <a href="cedar-clay-store/catalog-studio.html">Product editor ↗</a>
+                    </div>
+                    <p class="featured-project-note">Portfolio demo: fictional inventory and sample orders. Browser-local management only; no real payments, secure shared backend or deliveries.</p>
+                </article>
                 <div class="project-list">
 
                     <div>Responsive Websites</div>
