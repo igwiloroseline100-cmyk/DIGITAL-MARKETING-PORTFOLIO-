@@ -34,3 +34,7 @@ The visuals use CSS treatments and two externally hosted example photographs, wi
 Production requirements include an authenticated admin backend, shared transactional appointment database with server-side overlap protection, customer permission checks, verified staff schedules, configurable timezone rules, email/SMS service with consent, optional deposit payment through a processor, audit logging and end-to-end browser QA.
 
 This project intentionally remains separate from Cedar & Clay e-commerce and the five future AI automation systems.
+
+## Real-photo update (2026-11-17)
+
+Hero: [Eve — woman in a stylish outfit outdoors](https://unsplash.com/photos/a-woman-in-a-stylish-outfit-smiles-outdoors-Mw-YgyOCRaE). Editorial: [African beauty hairstyling photograph](https://unsplash.com/photos/a-woman-getting-her-hair-done-by-a-professional-hair-stylist-SVQnJT4uYuw). These are existing photographic assets from Unsplash, not AI-generated site art; licensed under the [Unsplash License](https://unsplash.com/license). Hosted via Unsplash's image CDN with offline gradient fallback. Images depict models and do not represent an actual salon, staff or customers.

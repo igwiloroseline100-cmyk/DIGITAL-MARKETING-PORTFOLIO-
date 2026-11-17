@@ -151,3 +151,11 @@ test("simulated checkout and shipping journey are functional yet clearly labelle
   assert.match(read("assets/order-demo.js"),/function initOwnerOrders/);
   assert.doesNotMatch(read("assets/order-demo.js"),/\bfetch\s*\(/);
 });
+
+test("store homepage features real interior photography rather than the emoji hero",()=>{
+ const html=read("index.html"),css=read("assets/styles.css");
+ assert.match(html,/Photograph of a naturally lit, furnished living room/);
+ assert.doesNotMatch(html,/class="hero-emoji"/);
+ assert.match(css,/photo-1778766017582-44ba4512f532/);
+ assert.match(css,/photo-1726090401458-7abb00f7450c/);
+});

@@ -113,3 +113,10 @@ test("no payment collection, external customer API or fake AI claims are wired",
  assert.match(read("index.html"),/scripted demonstration, not AI/);
  assert.match(read("book.html"),/Use a fictional guest name/);
 });
+
+test("beauty homepage shows licensed photographic images rather than placeholder hero art",()=>{
+ const css=read("assets/styles.css"),home=read("index.html");
+ assert.match(css,/photo-1772249541849-affa714a1b3b/);
+ assert.match(css,/photo-1677738812114-2aba99f22b98/);
+ assert.match(home,/Photograph of a woman wearing a stylish outfit outdoors/);
+});

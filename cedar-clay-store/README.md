@@ -107,3 +107,7 @@ Cart quantities can be typed directly (for example 50), or adjusted with + and �
 The local data is not shared between browsers or devices and can be changed or cleared by anyone using the same browser. It is a functional demonstration of the order journey, not a production implementation of authentication, verified payments, logistics or notification delivery.
 
 To deploy this for an actual business, add authenticated owner accounts, a shared orders database, server-side price/stock checks, verified payment-provider callbacks, permission-controlled status changes, and a transactional notification service. Test in the payment provider's sandbox before switching to live money.
+
+## Real-photo update (2026-11-17)
+
+Hero: [Christopher Stites — naturally lit living room](https://unsplash.com/photos/cozy-living-room-with-armchairs-illuminated-lamp-and-window-light-tedtXRcL1AI). Editorial: [Clay Banks — neutral-tone living room](https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-fire-place-PAoispQVHNI). These are real photographic assets under the [Unsplash License](https://unsplash.com/license), used as illustrative lifestyle imagery, not proof of real products or a physical store. Images are served by Unsplash with CSS color fallbacks.

@@ -44,7 +44,7 @@ h3{font-size:1.58rem;line-height:1.17}
 .hero-copy h1 em{font-style:italic;color:var(--rose-dark)}
 .hero-copy .lead{max-width:510px}
 .hero-art{position:relative;min-height:575px;align-self:stretch;display:flex;align-items:center;justify-content:center}
-.hero-photo{position:absolute;inset:0 0 0 15%;background:linear-gradient(135deg,rgba(236,207,197,.24),rgba(114,76,65,.25)),url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1100&q=80") center/cover,linear-gradient(150deg,#f1c8bb,#bc8f7f 60%,#e3d1bf)}
+.hero-photo{position:absolute;inset:0 0 0 15%;background:linear-gradient(135deg,rgba(236,207,197,.24),rgba(114,76,65,.25)),url("https://images.unsplash.com/photo-1772249541849-affa714a1b3b?auto=format&fit=crop&w=1200&q=82") center 30%/cover,linear-gradient(150deg,#f1c8bb,#bc8f7f 60%,#e3d1bf)}
 .hero-sun{width:215px;height:215px;position:absolute;top:17%;left:-20px;border-radius:50%;background:#efdfc8;mix-blend-mode:screen;opacity:.6}
 .hero-float{position:absolute;background:#fbf5eb;max-width:225px;bottom:50px;left:0;padding:22px 24px;box-shadow:var(--shadow)}
 .hero-float strong{font-family:Georgia,serif;font-size:1.4rem;font-weight:400;display:block;line-height:1.2}
@@ -79,7 +79,7 @@ h3{font-size:1.58rem;line-height:1.17}
 .service-foot small{color:#82746c}
 .service-foot a{text-decoration:none;font-weight:780;font-size:.79rem;color:var(--rose-dark)}
 .editorial{display:grid;grid-template-columns:.9fr 1.1fr;min-height:480px;overflow:hidden}
-.editorial-photo{background:linear-gradient(125deg,rgba(90,60,59,.09),rgba(63,42,36,.16)),url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1100&q=80") center/cover,linear-gradient(135deg,#d9b9a3,#ad7d78)}
+.editorial-photo{background:linear-gradient(125deg,rgba(90,60,59,.09),rgba(63,42,36,.16)),url("https://images.unsplash.com/photo-1677738812114-2aba99f22b98?auto=format&fit=crop&w=1200&q=82") center 38%/cover,linear-gradient(135deg,#d9b9a3,#ad7d78)}
 .editorial-copy{background:#e9dfd4;padding:clamp(55px,7vw,108px);display:flex;flex-direction:column;justify-content:center}
 .editorial-copy p{max-width:470px;color:#6a615a}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:23px}
@@ -197,3 +197,7 @@ h3{font-size:1.58rem;line-height:1.17}
  .button-row{flex-direction:column}.button-row .btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Documentary-style licensed photography: preserve natural skin and environment, no synthetic visual effects. */
+.hero-photo{background-blend-mode:normal;filter:none}
+.hero-sun{opacity:.14;mix-blend-mode:normal}
